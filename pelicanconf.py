@@ -23,11 +23,10 @@ AUTHOR_FEED_RSS = None
 LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Python.org', 'http://python.org/'),
          ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+         ('Travis-CI', 'https://travis-ci.org/'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Github', 'https://github.com/Bleno'),)
 
 DEFAULT_PAGINATION = 10
 GOOGLE_ANALYTICS = 'UA-71083804-2'
