@@ -30,6 +30,6 @@ SOCIAL = (('You can add links in your config file', '#'),
           ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 10
-
+GOOGLE_ANALYTICS = 'UA-71083804-2'
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
