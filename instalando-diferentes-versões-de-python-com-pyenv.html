@@ -61,42 +61,42 @@
 <p>e a instalação manual que é muito fácil também =).</p>
 <h4>Instalação manual:</h4>
 <p>É basicamente um clone do projeto, um ótimo local para instalação é [$HOME/.pyenv] , mas você pode instalar em qualquer lugar que desejar =).</p>
-<div class="highlight"><pre><span class="nv">$ </span>git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+<div class="highlight"><pre><span></span>$ git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 </pre></div>
 
 
 <p>Definir a variável de ambiente PYENV_ROOT:</p>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#39;</span> &gt;&gt; ~/.bashrc
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
+<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#39;</span> &gt;&gt; ~/.bashrc
+$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
 </pre></div>
 
 
 <p>Adicionar pyenv init ao seu shel:</p>
 </blockquote>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(pyenv init -)&quot;&#39;</span> &gt;&gt; ~/.bashrc
+<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(pyenv init -)&quot;&#39;</span> &gt;&gt; ~/.bashrc
 </pre></div>
 
 
 <blockquote>
 <p>Reiniciar o shel para que as alterações façam efeito:</p>
-<div class="highlight"><pre><span class="x">exec </span><span class="p">$</span><span class="nv">SHELL</span><span class="x"></span>
+<div class="highlight"><pre><span></span><span class="x">exec </span><span class="p">$</span><span class="nv">SHELL</span><span class="x"></span>
 </pre></div>
 
 
 <p>Instalar Python. As versões do Python são instaladas em $PYENV_ROOT/versions. Por exemplo vou instalar o Python 3.5.1</p>
-<div class="highlight"><pre><span class="nv">$ </span>pyenv install 3.5.1
+<div class="highlight"><pre><span></span>$ pyenv install 3.5.1
 </pre></div>
 
 
 <h2>Atualizando</h2>
 <p>Se você já tem o <strong>pyenv</strong> instalado, você pode atualizar usando o comando git pull:</p>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ~/.pyenv
-<span class="nv">$ </span>git pull
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/.pyenv
+$ git pull
 </pre></div>
 
 
 <h2>Comando básicos do <strong>pyenv</strong>:</h2>
-<div class="highlight"><pre>pyenv install x.x.x #instala uma versão específica do Python
+<div class="highlight"><pre><span></span>pyenv install x.x.x #instala uma versão específica do Python
 pyenv uninstall x.x.x #desinstala uma versão específica do Python
 pyenv versions # lista todas versões de Python instalada
 pyenv global # Mostra a versão do Python global ou configura passando o número da versão como parâmetro
@@ -104,7 +104,7 @@ pyenv global # Mostra a versão do Python global ou configura passando o número
 
 
 <h4>Para mais informações e ajuda:</h4>
-<div class="highlight"><pre>pyenv help &lt;comando&gt; # Para informações específicas sobre um comando.
+<div class="highlight"><pre><span></span>pyenv help &lt;comando&gt; # Para informações específicas sobre um comando.
 </pre></div>
 
 
@@ -112,7 +112,7 @@ pyenv global # Mostra a versão do Python global ou configura passando o número
 <p>Remova a linha pyenv init do seu shel (.bashrc)
 Remova  o diretório pyenv shims da várial PATH</p>
 <p>Então, remova todas as versões de Python instaladas</p>
-<div class="highlight"><pre>rm -rf `pyenv root`
+<div class="highlight"><pre><span></span>rm -rf `pyenv root`
 </pre></div>
 
 

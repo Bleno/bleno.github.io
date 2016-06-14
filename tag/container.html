@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
         <meta charset="utf-8" />
-        <title>Bleno Developer - Authors</title>
+        <title>Bleno Developer - Container</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bleno Developer Atom Feed" />
 
@@ -20,13 +20,82 @@
                 </ul></nav>
         </header><!-- /#banner -->
 
-<section id="content" class="body">
-    <h1>Authors on Bleno Developer</h1>
-    <ul>
-        <li><a href="/author/bleno-silva.html">Bleno Silva</a> (5)</li>
-    </ul>
-</section>
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/instalando-docker-ubuntu-14-04.html">Instalando Docker Ubuntu 14.04</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-04-11T10:00:00-03:00">
+                Published: Sat 11 April 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-04-15T09:23:00-03:00">
+                Updated: Wed 15 April 2015
+        </abbr>
 
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
+        </address>
+<p>In <a href="/category/programacao.html">Programação</a>.</p>
+<p>tags: <a href="/tag/docker.html">Docker</a> <a href="/tag/container.html">Container</a> </p>
+</footer><!-- /.post-info --><h1>Dependências</h1>
+<div class="highlight"><pre><span></span>sudo apt-get update
+
+sudo apt-get install apt-transport-https ca-certificates
+
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+</pre></div>
+
+
+<h1>Instalação via repositório</h1>
+<h2>Criar arquivo</h2>
+<div class="highlight"><pre><span></span>sudo vi /etc/apt/sources.list.d/docker.list
+</pre></div>
+
+
+<p>Dentro do arquivo</p>
+<div class="highlight"><pre><span></span><span class="k">deb</span> <span class="s">https://apt.dockerproject.org/repo</span> <span class="kp">ubuntu-trusty</span> <span class="kp">main</span>
+</pre></div>
+
+
+<h2>Remover repositório antigo</h2>
+<div class="highlight"><pre><span></span>sudo apt-get purge lxc-docker
+</pre></div>
+
+
+<h1>Prerequisites by Ubuntu Version</h1>
+<ul>
+<li>Ubuntu Wily 15.10</li>
+<li>
+<p>Ubuntu Trusty 14.04 (LTS)</p>
+<p>sudo apt-get update</p>
+<p>sudo apt-get install linux-image-extra-$(uname -r)</p>
+</li>
+</ul>
+<blockquote>
+<p>Ubuntu Precise 12.04 (LTS)
+For Ubuntu Precise, Docker requires the 3.13 kernel version. If your kernel version is older than 3.13, you must upgrade it. Refer to this table to see which packages are required for your environment:</p>
+</blockquote>
+<div class="highlight"><pre><span></span>$ sudo apt-get update
+
+
+$ sudo apt-get install linux-image-generic-lts-trusty
+
+$ sudo reboot
+</pre></div>
+
+
+<h1>Instalar</h1>
+<p>Agora que os pre requisitos estão instalados, vamos instalar os docker.</p>
+<div class="highlight"><pre><span></span>sudo apt-get update
+
+sudo apt-get install docker-engine
+
+sudo service docker start
+</pre></div>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>

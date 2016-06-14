@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+        <meta charset="utf-8" />
+        <title>Pyramid the web framework</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bleno Developer Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Bleno Developer </a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li class="active"><a href="/category/programacao.html">Programação</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/drafts/pyramid-the-web-framework.html" rel="bookmark"
+           title="Permalink to Pyramid the web framework">Pyramid the web framework</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-04-15T12:00:00-03:00">
+                Published: Wed 15 April 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-04-15T12:00:00-03:00">
+                Updated: Wed 15 April 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
+        </address>
+<p>In <a href="/category/programacao.html">Programação</a>.</p>
+<p>tags: <a href="/tag/python.html">Python</a> <a href="/tag/deploy.html">deploy</a> <a href="/tag/pyramid.html">pyramid</a> <a href="/tag/web.html">web</a> <a href="/tag/framework.html">framework</a> <a href="/tag/develop.html">develop</a> </p>
+</footer><!-- /.post-info -->      <p>Instalação do LBGenerator com Nginx, pserve e supervisor</p>
+<p>==========================================</p>
+<h1>Criando usuário (Opcional)</h1>
+<h2>Adicione o usuário</h2>
+<div class="highlight"><pre><span></span>adduser neolight
+</pre></div>
+
+
+<h2>Altere a senha do usuário</h2>
+<div class="highlight"><pre><span></span>passwd neolight
+</pre></div>
+
+
+<h1>Dê privilégios de root para o usuário</h1>
+<p>Encontre o código:</p>
+<p>root ALL=(ALL) ALL</p>
+<p>Adicione logo abaixo do código
+neolight ALL=(ALL) ALL</p>
+<h6></h6>
+<p>Iniciando o processo de preparação para instalação</p>
+<p>sudo yum -y update
+ sudo yum -y install gcc-c++
+ sudo yum -y install zlib-devel
+ sudo yum -y install openssl-devel
+ sudo yum -y install postgresql-devel
+ sudo yum -y install git</p>
+<h6></h6>
+<p>Baixando e instalando o Python3.2.2</p>
+<p>curl -O https://www.python.org/ftp/python/3.2.2/Python-3.2.2.tar.xz</p>
+<p>sudo mkdir /usr/local/lbneo</p>
+<p>sudo ./configure --prefix=/usr/local/lbneo/ --with-threads --enable-shared LDFLAGS=-Wl,-rpath=/usr/local/lbneo/lib/</p>
+<p>sudo make &amp;&amp; sudo make install</p>
+<p>curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.11.6.tar.gz</p>
+<p>==============================================</p>
+<p>Virtualenv</p>
+<p>curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.11.6.tar.gz</p>
+<p>tar -xvf virtualenv-1.11.6.tar.gz</p>
+<p>cd virtualenv-1.11.6</p>
+<p>sudo /usr/local/lbneo/bin/python3.2 setup.py install</p>
+<p>================================================</p>
+<p>Criar virtualenv</p>
+<p>cd /usr/local/lbneo</p>
+<p>sudo bin/virtualenv-3.2 -p bin/python3.2 virtenvlb3.2</p>
+<p>==================================================
+Criar virtualenv2.6 para o supervisor</p>
+<p>cd /usr/local/lbneo</p>
+<p>sudo bin/virtualenv -p python2.6 virtenvlb2.6</p>
+<p>==================================================</p>
+<p>Instalando o NGINX</p>
+<p>cd ~</p>
+<h1>Dependências</h1>
+<div class="highlight"><pre><span></span>sudo yum -y install gcc gcc-c++ make zlib-devel pcre-devel openssl-devel.
+</pre></div>
+
+
+<p>mkdir -p src &amp;&amp; cd src</p>
+<p>curl -O http://nginx.org/download/nginx-1.8.1.tar.gz</p>
+<p>tar -xzf nginx-1.8.1.tar.gz</p>
+<p>ln -sf nginx-1.8.1 nginx</p>
+<h1>Configurar</h1>
+<p>Essas configurações a baixo são similar as instaladas via RPM</p>
+<p>cd nginx</p>
+<div class="highlight"><pre><span></span>./configure \
+--user=nginx                          \
+--group=nginx                         \
+--prefix=/etc/nginx                   \
+--sbin-path=/usr/sbin/nginx           \
+--conf-path=/etc/nginx/nginx.conf     \
+--pid-path=/var/run/nginx.pid         \
+--lock-path=/var/run/nginx.lock       \
+--error-log-path=/var/log/nginx/error.log \
+--http-log-path=/var/log/nginx/access.log \
+--with-http_gzip_static_module        \
+--with-http_stub_status_module        \
+--with-http_ssl_module                \
+--with-pcre                           \
+--with-file-aio                       \
+--with-http_realip_module             \
+--without-http_scgi_module            \
+--without-http_uwsgi_module           \
+--without-http_fastcgi_module
+</pre></div>
+
+
+<h1>Compilar e instalar</h1>
+<div class="highlight"><pre><span></span>make
+sudo make install
+</pre></div>
+
+
+<h1>Adicionar usuário</h1>
+<div class="highlight"><pre><span></span>sudo useradd -r nginx
+</pre></div>
+
+
+<h1>Configurando /etc/init.d/nginx para iniciar com o sistema</h1>
+<div class="highlight"><pre><span></span>sudo vi /etc/init.d/nginx
+</pre></div>
+
+
+<p>"""
+    #!/bin/sh
+    #
+    # nginx - this script starts and stops the nginx daemin
+    #
+    # chkconfig:   - 85 15
+    # description:  Nginx is an HTTP(S) server, HTTP(S) reverse \
+    #               proxy and IMAP/POP3 proxy server
+    # processname: nginx
+    # config:      /etc/nginx/nginx.conf
+    # pidfile:     /var/run/nginx.pid
+    # user:        nginx</p>
+<div class="highlight"><pre><span></span><span class="err">#</span><span class="x"> Source function library.</span>
+<span class="x">. /etc/rc.d/init.d/functions</span>
+
+<span class="err">#</span><span class="x"> Source networking configuration.</span>
+<span class="x">. /etc/sysconfig/network</span>
+
+<span class="err">#</span><span class="x"> Check that networking is up.</span>
+<span class="x">[ &quot;</span><span class="p">$</span><span class="nv">NETWORKING</span><span class="x">&quot; = &quot;no&quot; ] &amp;&amp; exit 0</span>
+
+<span class="x">nginx=&quot;/usr/sbin/nginx&quot;</span>
+<span class="x">prog=</span><span class="p">$(</span><span class="err">basename</span> <span class="p">$</span><span class="nv">nginx</span><span class="p">)</span><span class="x"></span>
+
+<span class="x">NGINX_CONF_FILE=&quot;/etc/nginx/nginx.conf&quot;</span>
+
+<span class="x">lockfile=/var/run/nginx.lock</span>
+
+<span class="x">start() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    [ -x </span><span class="p">$</span><span class="nv">nginx</span><span class="x"> ] || exit 5</span>
+<span class="x">    [ -f </span><span class="p">$</span><span class="nv">NGINX_CONF_FILE</span><span class="x"> ] || exit 6</span>
+<span class="x">    echo -n </span><span class="p">$</span><span class="x">&quot;Starting </span><span class="p">$</span><span class="nv">prog</span><span class="x">: &quot;</span>
+<span class="x">    daemon </span><span class="p">$</span><span class="nv">nginx</span><span class="x"> -c </span><span class="p">$</span><span class="nv">NGINX_CONF_FILE</span><span class="x"></span>
+<span class="x">    retval=</span><span class="p">$</span><span class="x">?</span>
+<span class="x">    echo</span>
+<span class="x">    [ </span><span class="p">$</span><span class="nv">retval</span><span class="x"> -eq 0 ] &amp;&amp; touch </span><span class="p">$</span><span class="nv">lockfile</span><span class="x"></span>
+<span class="x">    return </span><span class="p">$</span><span class="nv">retval</span><span class="x"></span>
+<span class="x">}</span>
+
+<span class="x">stop() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    echo -n </span><span class="p">$</span><span class="x">&quot;Stopping </span><span class="p">$</span><span class="nv">prog</span><span class="x">: &quot;</span>
+<span class="x">    killproc </span><span class="p">$</span><span class="nv">prog</span><span class="x"> -QUIT</span>
+<span class="x">    retval=</span><span class="p">$</span><span class="x">?</span>
+<span class="x">    echo</span>
+<span class="x">    [ </span><span class="p">$</span><span class="nv">retval</span><span class="x"> -eq 0 ] &amp;&amp; rm -f </span><span class="p">$</span><span class="nv">lockfile</span><span class="x"></span>
+<span class="x">    return </span><span class="p">$</span><span class="nv">retval</span><span class="x"></span>
+<span class="x">}</span>
+
+<span class="x">restart() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    configtest || return </span><span class="p">$</span><span class="x">?</span>
+<span class="x">    stop</span>
+<span class="x">    start</span>
+<span class="x">}</span>
+
+<span class="x">reload() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    configtest || return </span><span class="p">$</span><span class="x">?</span>
+<span class="x">    echo -n </span><span class="p">$</span><span class="x">&quot;Reloading </span><span class="p">$</span><span class="nv">prog</span><span class="x">: &quot;</span>
+<span class="x">    killproc </span><span class="p">$</span><span class="nv">nginx</span><span class="x"> -HUP</span>
+<span class="x">    RETVAL=</span><span class="p">$</span><span class="x">?</span>
+<span class="x">    echo</span>
+<span class="x">}</span>
+
+<span class="x">force_reload() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    restart</span>
+<span class="x">}</span>
+
+<span class="x">configtest() </span><span class="err">{</span><span class="x"></span>
+<span class="x">  </span><span class="p">$</span><span class="nv">nginx</span><span class="x"> -t -c </span><span class="p">$</span><span class="nv">NGINX_CONF_FILE</span><span class="x"></span>
+<span class="x">}</span>
+
+<span class="x">rh_status() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    status </span><span class="p">$</span><span class="nv">prog</span><span class="x"></span>
+<span class="x">}</span>
+
+<span class="x">rh_status_q() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    rh_status &gt;/dev/null 2&gt;&amp;1</span>
+<span class="x">}</span>
+
+<span class="x">case &quot;</span><span class="p">$</span><span class="x">1&quot; in</span>
+<span class="x">    start)</span>
+<span class="x">        rh_status_q &amp;&amp; exit 0</span>
+<span class="x">        </span><span class="p">$</span><span class="x">1</span>
+<span class="x">        ;;</span>
+<span class="x">    stop)</span>
+<span class="x">        rh_status_q || exit 0</span>
+<span class="x">        </span><span class="p">$</span><span class="x">1</span>
+<span class="x">        ;;</span>
+<span class="x">    restart|configtest)</span>
+<span class="x">        </span><span class="p">$</span><span class="x">1</span>
+<span class="x">        ;;</span>
+<span class="x">    reload)</span>
+<span class="x">        rh_status_q || exit 7</span>
+<span class="x">        </span><span class="p">$</span><span class="x">1</span>
+<span class="x">        ;;</span>
+<span class="x">    force-reload)</span>
+<span class="x">        force_reload</span>
+<span class="x">        ;;</span>
+<span class="x">    status)</span>
+<span class="x">        rh_status</span>
+<span class="x">        ;;</span>
+<span class="x">    condrestart|try-restart)</span>
+<span class="x">        rh_status_q || exit 0</span>
+<span class="x">            ;;</span>
+<span class="x">    *)</span>
+<span class="x">        echo </span><span class="p">$</span><span class="x">&quot;Usage: </span><span class="p">$</span><span class="x">0 </span><span class="err">{</span><span class="x">start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest}&quot;</span>
+<span class="x">        exit 2</span>
+<span class="x">esac</span>
+</pre></div>
+
+
+<p>"""</p>
+<h1>Alterando a permissão do script</h1>
+<div class="highlight"><pre><span></span>sudo chmod +x /etc/init.d/nginx
+</pre></div>
+
+
+<h1>Iniciar no boot</h1>
+<div class="highlight"><pre><span></span>sudo chkconfig --add nginx
+sudo chkconfig --level 345 nginx on
+</pre></div>
+
+
+<h1>Configure o arquivo /etc/nginx/nginx.conf types_hash_bucket_size and server_names_hash_bucket_size altere de acordo com a sua necessidade:</h1>
+<div class="highlight"><pre><span></span>http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    # add the below 2 lines under http around line 20
+    types_hash_bucket_size 64;
+    server_names_hash_bucket_size 128;
+</pre></div>
+
+
+<h1>Inicie o serviço e teste na porta 80</h1>
+<div class="highlight"><pre><span></span>service nginx start
+</pre></div>
+
+
+<p>===============================================
+Instalando a liblightbase</p>
+<div class="highlight"><pre><span></span>sudo mkdir -p /usr/local/lbneo/virtenvlb3.2/src
+
+cd /usr/local/lbneo/virtenvlb3.2/src
+
+sudo git clone http://&lt;user&gt;:&lt;password&gt;@git.lightbase.cc/liblightbase.git
+
+cd /usr/local/lbneo/virtenvlb3.2/src/liblightbase
+
+/usr/local/lbneo/virtenvlb3.2/bin/python3.2 setup.py install
+</pre></div>
+
+
+<p>===============================================
+Instalando o LBGenerator</p>
+<p>cd /usr/local/lbneo/virtenvlb3.2/src</p>
+<p>sudo git clone -b master http://<user>:<password>@git.lightbase.cc/LBGenerator.git</p>
+<p>cd /usr/local/lbneo/virtenvlb3.2/src/LBGenerator</p>
+<p>sudo /usr/local/lbneo/virtenvlb3.2/bin/python3.2 setup.py install</p>
+<p>Caso ocorre em algum pacote instale via pip cada pacote com sua devida versão.</p>
+<p>===============================================</p>
+<p>Configurando o LBGenerator</p>
+<div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lbneo</span><span class="o">/</span><span class="n">virtenvlb3</span><span class="mf">.2</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">LBGenerator</span>
+
+<span class="n">sudo</span> <span class="n">vi</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lbneo</span><span class="o">/</span><span class="n">virtenvlb3</span><span class="mf">.2</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">LBGenerator</span><span class="o">/</span><span class="n">production</span><span class="p">.</span><span class="n">ini</span>
+
+<span class="n">Na</span> <span class="n">se</span><span class="err">çã</span><span class="n">o</span> <span class="nl">app</span><span class="p">:</span><span class="n">main</span> <span class="n">alterar</span> <span class="n">sqlalchemy</span><span class="p">.</span><span class="n">url</span>
+
+<span class="n">sqlalchemy</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="nl">postgresql</span><span class="p">:</span><span class="c1">//user:password@127.0.0.1/database</span>
+
+<span class="n">Na</span> <span class="n">se</span><span class="err">çã</span><span class="n">o</span> <span class="n">alembic</span> <span class="n">alterar</span> <span class="n">sqlalchemy</span><span class="p">.</span><span class="n">url</span>
+
+<span class="n">sqlalchemy</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="nl">postgresql</span><span class="p">:</span><span class="c1">//user:password@127.0.0.1/database</span>
+
+<span class="n">Antes</span> <span class="n">da</span> <span class="n">se</span><span class="err">çã</span><span class="n">o</span> <span class="n">loggers</span> <span class="n">adicionar</span> <span class="n">as</span> <span class="n">seguintes</span> <span class="n">configura</span><span class="err">çõ</span><span class="nl">es</span><span class="p">:</span>
+
+
+<span class="cp">#---------- Pipeline Configuration ----------</span>
+<span class="p">[</span><span class="nl">filter</span><span class="p">:</span><span class="n">paste_prefix</span><span class="p">]</span>
+<span class="n">use</span> <span class="o">=</span> <span class="nl">egg</span><span class="p">:</span><span class="n">PasteDeploy</span><span class="err">#</span><span class="n">prefix</span>
+
+<span class="cp">#[pipeline:main]</span>
+<span class="cp">#pipeline =</span>
+<span class="cp">#    paste_prefix</span>
+<span class="cp">#    # a good spot for some logging middleware!</span>
+<span class="cp">#    myapp</span>
+
+<span class="cp">#---------- Server Configuration ----------</span>
+<span class="p">[</span><span class="nl">server</span><span class="p">:</span><span class="n">main</span><span class="p">]</span>
+<span class="n">use</span> <span class="o">=</span> <span class="nl">egg</span><span class="p">:</span><span class="n">waitress</span><span class="err">#</span><span class="n">main</span>
+<span class="n">host</span> <span class="o">=</span> <span class="mf">127.0.0.1</span>
+<span class="n">port</span> <span class="o">=</span> <span class="o">%</span><span class="p">(</span><span class="n">http_port</span><span class="p">)</span><span class="n">s</span>
+
+<span class="cp">#---------- Logging Configuration ----------</span>
+<span class="cp"># ...</span>
+</pre></div>
+
+
+<p>Teste o pserve daemon</p>
+<div class="highlight"><pre><span></span>sudo /usr/local/lbneo/virtenvlb3.2/bin/pserve --daemon --pid-file=pserve_5000.pid production.ini http_port=5000
+sudo /usr/local/lbneo/virtenvlb3.2/bin/pserve --daemon --pid-file=pserve_5001.pid production.ini http_port=5001
+
+curl 127.0.0.1:5000
+</pre></div>
+
+
+<p>Parar o teste</p>
+<div class="highlight"><pre><span></span>sudo /usr/local/lbneo/virtenvlb3.2/bin/pserve --stop-daemon --pid-file=pserve_5000.pid
+sudo /usr/local/lbneo/virtenvlb3.2/bin/pserve --stop-daemon --pid-file=pserve_5001.pid
+</pre></div>
+
+
+<p>No teste foi executado 2 processos em portas diferentes.</p>
+<p>====================================================</p>
+<p>Configurando o NGINX como proxy para o LBGenerator</p>
+<div class="highlight"><pre><span></span>cd /etc/nginx
+
+sudo mkdir conf.d
+
+sudo vi /etc/nginx/nginx.conf
+
+# nginx.conf
+
+user nginx;
+worker_processes 4;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 1024;
+    # multi_accept on;
+}
+
+http {
+
+    ##
+    # Basic Settings
+    ##
+
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    keepalive_timeout 65;
+    types_hash_max_size 2048;
+    # server_tokens off;
+
+    # server_names_hash_bucket_size 64;
+    # server_name_in_redirect off;
+
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    ##
+    # Logging Settings
+    ##
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    ##
+    # Gzip Settings
+    ##
+    gzip on;
+    gzip_disable &quot;msie6&quot;;
+
+    ##
+    # Virtual Host Configs
+    ##
+
+    include /etc/nginx/conf.d/*.conf;
+    #include /etc/nginx/sites-enabled/*;
+}
+</pre></div>
+
+
+<p>sudo vi /etc/nginx/conf.d/lbgenerator.conf</p>
+<p># lbgenerator.conf</p>
+<div class="highlight"><pre><span></span><span class="nt">upstream</span> <span class="nt">lbgenerator</span> <span class="p">{</span>
+    <span class="n">server</span> <span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">:</span><span class="m">5000</span><span class="p">;</span>
+    <span class="n">server</span> <span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">:</span><span class="m">5001</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">server</span> <span class="p">{</span>
+    <span class="n">listen</span> <span class="m">80</span><span class="p">;</span>
+
+    <span class="err">#</span> <span class="n">optional</span> <span class="n">ssl</span> <span class="n">configuration</span>
+
+    <span class="m">#listen</span> <span class="m">443</span> <span class="n">ssl</span><span class="p">;</span>
+    <span class="m">#ssl</span><span class="n">_certificate</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">pem_file</span><span class="p">;</span>
+    <span class="m">#ssl</span><span class="n">_certificate_key</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">certificate_key</span><span class="p">;</span>
+
+    <span class="err">#</span> <span class="n">end</span> <span class="n">of</span> <span class="n">optional</span> <span class="n">ssl</span> <span class="n">configuration</span>
+
+    <span class="n">server_name</span>  <span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="p">;</span>
+
+    <span class="n">access_log</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">lbgenerator</span><span class="o">-</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
+
+    <span class="n">location</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span> <span class="err">{</span>
+        <span class="n">proxy_set_header</span>        <span class="n">Host</span> <span class="err">$</span><span class="n">http_host</span><span class="p">;</span>
+        <span class="n">proxy_set_header</span>        <span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span> <span class="err">$</span><span class="n">remote_addr</span><span class="p">;</span>
+        <span class="n">proxy_set_header</span>        <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span> <span class="err">$</span><span class="n">proxy_add_x_forwarded_for</span><span class="p">;</span>
+        <span class="n">proxy_set_header</span>        <span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">Proto</span> <span class="err">$</span><span class="n">scheme</span><span class="p">;</span>
+
+        <span class="n">client_max_body_size</span>    <span class="m">10</span><span class="n">m</span><span class="p">;</span>
+        <span class="n">client_body_buffer_size</span> <span class="m">128</span><span class="n">k</span><span class="p">;</span>
+        <span class="n">proxy_connect_timeout</span>   <span class="m">60s</span><span class="p">;</span>
+        <span class="n">proxy_send_timeout</span>      <span class="m">90s</span><span class="p">;</span>
+        <span class="n">proxy_read_timeout</span>      <span class="m">90s</span><span class="p">;</span>
+        <span class="n">proxy_buffering</span>         <span class="n">off</span><span class="p">;</span>
+        <span class="n">proxy_temp_file_write_size</span> <span class="m">64</span><span class="n">k</span><span class="p">;</span>
+        <span class="n">proxy_pass</span> <span class="n">http</span><span class="o">://</span><span class="n">lbgenerator</span><span class="o">/</span><span class="p">;</span>
+        <span class="n">proxy_redirect</span>          <span class="n">off</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="err">}</span>
+
+
+
+<span class="nt">sudo</span> <span class="nt">service</span> <span class="nt">nginx</span> <span class="nt">restart</span>
+
+<span class="nt">cd</span> <span class="o">/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">local</span><span class="o">/</span><span class="nt">lbneo</span><span class="o">/</span><span class="nt">virtenvlb3</span><span class="nc">.2</span><span class="o">/</span><span class="nt">src</span><span class="o">/</span><span class="nt">LBGenerator</span><span class="o">/</span>
+
+<span class="nt">sudo</span> <span class="o">/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">local</span><span class="o">/</span><span class="nt">lbneo</span><span class="o">/</span><span class="nt">virtenvlb3</span><span class="nc">.2</span><span class="o">/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">pserve</span> <span class="nt">--daemon</span> <span class="nt">--pid-file</span><span class="o">=</span><span class="nt">pserve_5000</span><span class="nc">.pid</span> <span class="nt">production</span><span class="nc">.ini</span> <span class="nt">http_port</span><span class="o">=</span><span class="nt">5000</span>
+<span class="nt">sudo</span> <span class="o">/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">local</span><span class="o">/</span><span class="nt">lbneo</span><span class="o">/</span><span class="nt">virtenvlb3</span><span class="nc">.2</span><span class="o">/</span><span class="nt">bin</span><span class="o">/</span><span class="nt">pserve</span> <span class="nt">--daemon</span> <span class="nt">--pid-file</span><span class="o">=</span><span class="nt">pserve_5001</span><span class="nc">.pid</span> <span class="nt">production</span><span class="nc">.ini</span> <span class="nt">http_port</span><span class="o">=</span><span class="nt">5001</span>
+
+<span class="nt">curl</span> <span class="nt">-L</span> <span class="nt">localhost</span><span class="o">/</span><span class="nt">api</span>
+</pre></div>
+
+
+<p>============================================================
+Instalando o supervisor para python3</p>
+<p>Supervisor é um gerenciador de processos unix que vai ajudar a automatizar a tarefa de iniciar 
+os processos do pserve e monitorar cada processo, caso algum desses processos tenha problema ele automaticamente é reiniciado.</p>
+<p>A versão que recomendada a instalar para Python3 é a 4.0.0.dev0 que só é encontrada direto no github</p>
+<p>O ideal seria criar um virtualenv com Python2.x só pra usar o supervisor,então lembrando, o supervisor monitora qualquer processo unix.</p>
+<p>/usr/local/lbneo/virtenvlb3.2/bin/pip3.2 install -e git+https://github.com/Supervisor/supervisor.git@master#egg=supervisor</p>
+<p>=== Instalando o supervisor para python3 ===</p>
+<div class="highlight"><pre><span></span>cd /usr/local/lbneo/virtenvlb3.2
+
+sudo /usr/local/lbneo/virtenvlb3.2/bin/pip3.2 install -e git+https://github.com/Supervisor/supervisor.git@master#egg=supervisor
+</pre></div>
+
+
+<p>Dessa forma ele será instalado em modo develop e os fontes ficarão em /usr/local/lbneo/virtenvlb3.2/src automaticamente!</p>
+<p>============================================================
+Instalando o supervisor para python2</p>
+<p>cd /usr/local/lbneo</p>
+<p>sudo virtenvlb2.6/bin/pip2.6 install supervisor</p>
+<p>============================================================
+Criar o arquivo de configuração do supervisor supervisord.conf</p>
+<div class="highlight"><pre><span></span>vi /usr/local/lbneo/virtenvlb3.2/src/LBGenerator/supervisord.conf
+</pre></div>
+
+
+<p>[unix_http_server]
+file=%(here)s/supervisor.sock</p>
+<p>[supervisord]
+pidfile=%(here)s/supervisord.pid
+logfile=%(here)s/supervisord.log
+logfile_maxbytes=50MB
+logfile_backups=10
+loglevel=info
+nodaemon=false
+minfds=1024
+minprocs=200</p>
+<p>[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface</p>
+<p>[supervisorctl]
+serverurl=unix://%(here)s/supervisor.sock</p>
+<p>[program:lbgenerator]
+autorestart=true
+command= /usr/local/lbneo/virtenvlb3.2/bin/pserve %(here)s/production.ini http_port=50%(process_num)02d
+process_name=%(program_name)s-%(process_num)01d
+numprocs=4
+numprocs_start=0
+redirect_stderr=true
+stdout_logfile=%(here)s/%(program_name)s-%(process_num)01d.log</p>
+<p>[inet_http_server]
+port=127.0.0.1:9001</p>
+<h1>username = user # Basic auth username</h1>
+<h1>password = pass # Basic auth password</h1>
+<p>Supervisor client web (Opcional)</p>
+<p>Adicione ao final do arquivo supervisord.conf as seguintes configurações.
+Os paramêtros username e password descomente e preencha como queira.</p>
+<div class="highlight"><pre><span></span><span class="k">[inet_http_server]</span>
+<span class="na">port</span><span class="o">=</span><span class="s">127.0.0.1:9001</span>
+<span class="c1">#username = user # Basic auth username</span>
+<span class="c1">#password = pass # Basic auth password</span>
+</pre></div>
+
+
+<p>Teste as configurações</p>
+<p>Execute o supervisord</p>
+<div class="highlight"><pre><span></span>sudo /usr/local/lbneo/virtenvlb3.2/bin/supervisord -c supervisord.conf
+</pre></div>
+
+
+<p>ou para python2
+    /usr/local/lbneo/virtenvlb2.6/bin/supervisord -c supervisord.conf</p>
+<p>Verifique se os processos estão rodando</p>
+<div class="highlight"><pre><span></span>curl 127.0.0.1:5000
+</pre></div>
+
+
+<p>Parar processos:</p>
+<div class="highlight"><pre><span></span>sudo /usr/local/lbneo/virtenvlb3.2/bin/supervisorctl stop all
+</pre></div>
+
+
+<p>ou para python2
+    sudo /usr/local/lbneo/virtenvlb2.6/bin/supervisorctl stop all</p>
+<p>===============================================================
+Configurando o supervisord para iniciar no boot</p>
+<p>Crie um arquivo  /etc/init.d/supervisord</p>
+<div class="highlight"><pre><span></span><span class="x">sudo vi supervisord</span>
+
+<span class="err">#</span><span class="x">!/bin/bash</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> supervisord   This scripts turns supervisord on</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> Author:       Mike McGrath &lt;mmcgrath@redhat.com&gt; (based off yumupdatesd)</span>
+<span class="err">#</span><span class="x">               Jason Koppe &lt;jkoppe@indeed.com&gt; adjusted to read sysconfig,</span>
+<span class="err">#</span><span class="x">                   use supervisord tools to start/stop, conditionally wait</span>
+<span class="err">#</span><span class="x">                   for child processes to shutdown, and startup later</span>
+<span class="err">#</span><span class="x">               Mikhail Mingalev &lt;mingalevme@gmail.com&gt; Merged</span>
+<span class="err">#</span><span class="x">                   redhat-init-jkoppe and redhat-sysconfig-jkoppe, and</span>
+<span class="err">#</span><span class="x">                   made the script &quot;simple customizable&quot;.</span>
+<span class="err">#</span><span class="x">               Brendan Maguire &lt;maguire.brendan@gmail.com&gt; Added OPTIONS to</span>
+<span class="err">#</span><span class="x">                   SUPERVISORCTL status call</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> chkconfig:    345 83 04</span>
+<span class="err">#</span><span class="x"></span>
+<span class="err">#</span><span class="x"> description:  supervisor is a process control utility.  It has a web based</span>
+<span class="err">#</span><span class="x">               xmlrpc interface as well as a few other nifty features.</span>
+<span class="err">#</span><span class="x">               Script was originally written by Jason Koppe &lt;jkoppe@indeed.com&gt;.</span>
+<span class="err">#</span><span class="x"></span>
+
+<span class="err">#</span><span class="x"> source function library</span>
+<span class="x">. /etc/rc.d/init.d/functions</span>
+
+<span class="x">set -a</span>
+
+<span class="x">PREFIX=/usr/local/lbneo/virtenvlb3.2</span>
+
+<span class="x">SUPERVISORD=</span><span class="p">$</span><span class="nv">PREFIX</span><span class="x">/bin/supervisord</span>
+<span class="x">SUPERVISORCTL=</span><span class="p">$</span><span class="nv">PREFIX</span><span class="x">/bin/supervisorctl</span>
+
+<span class="x">PIDFILE=</span><span class="p">$</span><span class="nv">PREFIX</span><span class="x">/src/LBGenerator/supervisord.pid</span>
+<span class="x">LOCKFILE=/var/lock/subsys/supervisord</span>
+
+<span class="x">OPTIONS=&quot;-c </span><span class="p">$</span><span class="nv">PREFIX</span><span class="x">/src/LBGenerator/supervisord.conf&quot;</span>
+
+<span class="err">#</span><span class="x"> unset this variable if you don&#39;t care to wait for child processes to shutdown before removing the </span><span class="p">$</span><span class="nv">LOCKFILE</span><span class="x">-lock</span>
+<span class="x">WAIT_FOR_SUBPROCESSES=yes</span>
+
+<span class="err">#</span><span class="x"> remove this if you manage number of open files in some other fashion</span>
+<span class="x">ulimit -n 96000</span>
+
+<span class="x">RETVAL=0</span>
+
+
+<span class="x">running_pid()</span>
+<span class="err">{</span><span class="x"></span>
+<span class="x">    </span><span class="err">#</span><span class="x"> Check if a given process pid&#39;s cmdline matches a given name</span>
+<span class="x">    pid=</span><span class="p">$</span><span class="x">1</span>
+<span class="x">    name=</span><span class="p">$</span><span class="x">2</span>
+<span class="x">    [ -z &quot;</span><span class="p">$</span><span class="nv">pid</span><span class="x">&quot; ] &amp;&amp; return 1</span>
+<span class="x">    [ ! -d /proc/</span><span class="p">$</span><span class="nv">pid</span><span class="x"> ] &amp;&amp; return 1</span>
+<span class="x">    (cat /proc/</span><span class="p">$</span><span class="nv">pid</span><span class="x">/cmdline | tr &quot;\000&quot; &quot;\n&quot;|grep -q </span><span class="p">$</span><span class="nv">name</span><span class="x">) || return 1</span>
+<span class="x">    return 0</span>
+<span class="x">}</span>
+
+<span class="x">running()</span>
+<span class="err">{</span><span class="x"></span>
+<span class="err">#</span><span class="x"> Check if the process is running looking at /proc</span>
+<span class="err">#</span><span class="x"> (works for all users)</span>
+
+<span class="x">    </span><span class="err">#</span><span class="x"> No pidfile, probably no daemon present</span>
+<span class="x">    [ ! -f &quot;</span><span class="p">$</span><span class="nv">PIDFILE</span><span class="x">&quot; ] &amp;&amp; return 1</span>
+<span class="x">    </span><span class="err">#</span><span class="x"> Obtain the pid and check it against the binary name</span>
+<span class="x">    pid=`cat </span><span class="p">$</span><span class="nv">PIDFILE</span><span class="x">`</span>
+<span class="x">    running_pid </span><span class="p">$</span><span class="nv">pid</span><span class="x"> </span><span class="p">$</span><span class="nv">SUPERVISORD</span><span class="x"> || return 1</span>
+<span class="x">    return 0</span>
+<span class="x">}</span>
+
+<span class="x">start() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    echo &quot;Starting supervisord: &quot;</span>
+
+<span class="x">    if [ -e </span><span class="p">$</span><span class="nv">PIDFILE</span><span class="x"> ]; then</span>
+<span class="x">            echo &quot;ALREADY STARTED&quot;</span>
+<span class="x">            return 1</span>
+<span class="x">    fi</span>
+
+<span class="x">    </span><span class="err">#</span><span class="x"> start supervisord with options from sysconfig (stuff like -c)</span>
+<span class="x">    </span><span class="p">$</span><span class="nv">SUPERVISORD</span><span class="x"> </span><span class="p">$</span><span class="nv">OPTIONS</span><span class="x"></span>
+
+<span class="x">    </span><span class="err">#</span><span class="x"> show initial startup status</span>
+<span class="x">    </span><span class="p">$</span><span class="nv">SUPERVISORCTL</span><span class="x"> </span><span class="p">$</span><span class="nv">OPTIONS</span><span class="x"> status</span>
+
+<span class="x">    </span><span class="err">#</span><span class="x"> only create the subsyslock if we created the PIDFILE</span>
+<span class="x">    [ -e </span><span class="p">$</span><span class="nv">PIDFILE</span><span class="x"> ] &amp;&amp; touch </span><span class="p">$</span><span class="nv">LOCKFILE</span><span class="x"></span>
+<span class="x">}</span>
+
+<span class="x">stop() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    echo -n &quot;Stopping supervisord: &quot;</span>
+<span class="x">    </span><span class="p">$</span><span class="nv">SUPERVISORCTL</span><span class="x"> </span><span class="p">$</span><span class="nv">OPTIONS</span><span class="x"> shutdown</span>
+<span class="x">    if [ -n &quot;</span><span class="p">$</span><span class="nv">WAIT_FOR_SUBPROCESSES</span><span class="x">&quot; ]; then</span>
+<span class="x">        echo &quot;Waiting roughly 60 seconds for </span><span class="p">$</span><span class="nv">PIDFILE</span><span class="x"> to be removed after child processes exit&quot;</span>
+<span class="x">        for sleep in  2 2 2 2 4 4 4 4 8 8 8 8 last; do</span>
+<span class="x">            if [ ! -e </span><span class="p">$</span><span class="nv">PIDFILE</span><span class="x"> ] ; then</span>
+<span class="x">                echo &quot;Supervisord exited as expected in under </span><span class="p">$</span><span class="nv">total_sleep</span><span class="x"> seconds&quot;</span>
+<span class="x">                break</span>
+<span class="x">            else</span>
+<span class="x">                if [[ </span><span class="p">$</span><span class="nv">sleep</span><span class="x"> -eq &quot;last&quot; ]] ; then</span>
+<span class="x">                    echo &quot;Supervisord still working on shutting down. We&#39;ve waited roughly 60 seconds, we&#39;ll let it do its thing from here&quot;</span>
+<span class="x">                    return 1</span>
+<span class="x">                else</span>
+<span class="x">                    sleep </span><span class="p">$</span><span class="nv">sleep</span><span class="x"></span>
+<span class="x">                    total_sleep=</span><span class="p">$((</span> <span class="p">$</span><span class="nv">total_sleep</span> <span class="err">+</span> <span class="p">$</span><span class="nv">sleep</span> <span class="p">))</span><span class="x"></span>
+<span class="x">                fi</span>
+
+<span class="x">            fi</span>
+<span class="x">        done</span>
+<span class="x">    fi</span>
+
+<span class="x">    </span><span class="err">#</span><span class="x"> always remove the subsys. We might have waited a while, but just remove it at this point.</span>
+<span class="x">    rm -f </span><span class="p">$</span><span class="nv">LOCKFILE</span><span class="x"></span>
+<span class="x">}</span>
+
+<span class="x">restart() </span><span class="err">{</span><span class="x"></span>
+<span class="x">    stop</span>
+<span class="x">    start</span>
+<span class="x">}</span>
+
+<span class="x">case &quot;</span><span class="p">$</span><span class="x">1&quot; in</span>
+<span class="x">start)</span>
+<span class="x">    start</span>
+<span class="x">    RETVAL=</span><span class="p">$</span><span class="x">?</span>
+<span class="x">    ;;</span>
+<span class="x">stop)</span>
+<span class="x">    stop</span>
+<span class="x">    RETVAL=</span><span class="p">$</span><span class="x">?</span>
+<span class="x">    ;;</span>
+<span class="x">restart|force-reload)</span>
+<span class="x">    restart</span>
+<span class="x">    RETVAL=</span><span class="p">$</span><span class="x">?</span>
+<span class="x">    ;;</span>
+<span class="x">reload)</span>
+<span class="x">    </span><span class="p">$</span><span class="nv">SUPERVISORCTL</span><span class="x"> </span><span class="p">$</span><span class="nv">OPTIONS</span><span class="x"> reload</span>
+<span class="x">    RETVAL=</span><span class="p">$</span><span class="x">?</span>
+<span class="x">    ;;</span>
+<span class="x">condrestart)</span>
+<span class="x">    [ -f </span><span class="p">$</span><span class="nv">LOCKFILE</span><span class="x"> ] &amp;&amp; restart</span>
+<span class="x">    RETVAL=</span><span class="p">$</span><span class="x">?</span>
+<span class="x">    ;;</span>
+<span class="x">status)</span>
+<span class="x">    </span><span class="p">$</span><span class="nv">SUPERVISORCTL</span><span class="x"> </span><span class="p">$</span><span class="nv">OPTIONS</span><span class="x"> status</span>
+<span class="x">    if running ; then</span>
+<span class="x">        RETVAL=0</span>
+<span class="x">    else</span>
+<span class="x">        RETVAL=1</span>
+<span class="x">    fi</span>
+<span class="x">    ;;</span>
+<span class="x">*)</span>
+<span class="x">    echo </span><span class="p">$</span><span class="x">&quot;Usage: </span><span class="p">$</span><span class="x">0 </span><span class="err">{</span><span class="x">start|stop|status|restart|reload|force-reload|condrestart}&quot;</span>
+<span class="x">    exit 1</span>
+<span class="x">esac</span>
+
+<span class="x">exit </span><span class="p">$</span><span class="nv">RETVAL</span><span class="x"></span>
+</pre></div>
+
+
+<p>OBS: Se estiver usando o supervisor com python2.6 altere e crie as seguintes variáveis:</p>
+<div class="highlight"><pre><span></span><span class="x">PREFIX=/usr/local/lbneo/virtenvlb2.6</span>
+<span class="x">PREFIX2=/usr/local/lbneo/virtenvlb3.2</span>
+<span class="x">PIDFILE=</span><span class="p">$</span><span class="nv">PREFIX2</span><span class="x">/src/LBGenerator/supervisord.pid</span>
+<span class="x">OPTIONS=&quot;-c </span><span class="p">$</span><span class="nv">PREFIX2</span><span class="x">/src/LBGenerator/supervisord.conf&quot;</span>
+</pre></div>
+
+
+<p>Salve e feche o arquivo</p>
+<p>Altere a permissão</p>
+<div class="highlight"><pre><span></span>sudo chmod +x /etc/rc.d/init.d/supervisord
+
+sudo chkconfig --add supervisord
+
+sudo chkconfig supervisord on
+
+sudo service supervisord start
+</pre></div>
+
+
+<p>Teste o acesso</p>
+<div class="highlight"><pre><span></span>curl -L 127.0.0.1/api
+</pre></div>
+
+
+<p>Liberando porta http para acesso externo</p>
+<div class="highlight"><pre><span></span>sudo iptables -I INPUT 5 -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
+sudo service iptables save
+sudo service iptables restart
+</pre></div>
+
+
+<p>=========================================================
+Configurando o NGINX como proxy para o supervidor web interface Opcional</p>
+<p>reinicie o NGINX</p>
+<div class="highlight"><pre><span></span>sudo service nginx restart
+</pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="https://travis-ci.org/">Travis-CI</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/Bleno">Github</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-71083804-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

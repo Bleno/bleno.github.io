@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
         <meta charset="utf-8" />
-        <title>Bleno Developer - Authors</title>
+        <title>Bleno Developer - Web</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bleno Developer Atom Feed" />
 
@@ -20,13 +20,62 @@
                 </ul></nav>
         </header><!-- /#banner -->
 
-<section id="content" class="body">
-    <h1>Authors on Bleno Developer</h1>
-    <ul>
-        <li><a href="/author/bleno-silva.html">Bleno Silva</a> (5)</li>
-    </ul>
-</section>
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/instalando-o-tornado-web-framework.html">Instalando o Tornado Web Framework</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-01-20T15:00:00-02:00">
+                Published: Tue 20 January 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-04-15T09:25:00-03:00">
+                Updated: Wed 15 April 2015
+        </abbr>
 
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
+        </address>
+<p>In <a href="/category/programacao.html">Programação</a>.</p>
+<p>tags: <a href="/tag/tornado.html">Tornado</a> <a href="/tag/web.html">Web</a> <a href="/tag/framework.html">Framework</a> <a href="/tag/websocket.html">WebSocket</a> </p>
+</footer><!-- /.post-info --><p>Para desenvolver a aplicação com o tornado escolhi usar a versão mais recente do python que é a 3.5.1. 
+Então com a ajuda da ferramenta <a href="/instalando-diferentes-versões-de-python-com-pyenv.html">pyenv</a> vou instalar esta versão do python.</p>
+<h1>Verifica se a versão 3.5.1 esta disponível</h1>
+<div class="highlight"><pre><span></span>pyenv install --list
+</pre></div>
+
+
+<h1>Caso não esteja atualizar o pyenv</h1>
+<div class="highlight"><pre><span></span>cd /home/bleno/.pyenv/plugins/python-build/../.. &amp;&amp; git pull &amp;&amp; cd -
+</pre></div>
+
+
+<h1>Instalar o python 3.5.1</h1>
+<div class="highlight"><pre><span></span>pyenv install 3.5.1
+</pre></div>
+
+
+<p>A resposta esperada será aproximadamente essa</p>
+<div class="highlight"><pre><span></span>Installed Python-3.5.1 to /home/bleno/.pyenv/versions/3.5.1
+</pre></div>
+
+
+<p>caso tenha problemas com a libbz2</p>
+<div class="highlight"><pre><span></span>sudo apt-get install libbz2-dev
+</pre></div>
+
+
+<h1>Criar o virtualenv</h1>
+<div class="highlight"><pre><span></span>virtualenv -p /home/bleno/.pyenv/versions/3.5.1/bin/python project
+</pre></div>
+
+
+<h1>Instalando o Tornado</h1>
+<div class="highlight"><pre><span></span>pip install tornado
+</pre></div>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>
