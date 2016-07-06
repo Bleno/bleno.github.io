@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+        <meta charset="utf-8" />
+        <title>Bleno Developer - Install</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bleno Developer Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Bleno Developer </a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/category/programacao.html">Programação</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/instalando-go.html">Instalando Go</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-06-07T16:29:00-03:00">
+                Published: Sun 07 June 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-06-07T16:29:00-03:00">
+                Updated: Sun 07 June 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
+        </address>
+<p>In <a href="/category/programacao.html">Programação</a>.</p>
+<p>tags: <a href="/tag/language.html">Language</a> <a href="/tag/programmer.html">Programmer</a> <a href="/tag/install.html">Install</a> <a href="/tag/go.html">Go</a> <a href="/tag/compile.html">Compile</a> <a href="/tag/hello-word.html">Hello Word</a> </p>
+</footer><!-- /.post-info --><h1>Baixar e extrair no diretório /usr/local</h1>
+<div class="highlight"><pre><span></span>tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
+</pre></div>
+
+
+<h1>Exportar variável de ambiente</h1>
+<div class="highlight"><pre><span></span><span class="x">echo &#39;export PATH=</span><span class="p">$</span><span class="nv">PATH</span><span class="x">:/usr/local/go/bin&#39; &gt;&gt; ~/.bashrc</span>
+</pre></div>
+
+
+<h1>Teste sua instalação</h1>
+<p>Vamos criar um workspace no seguinte diretório $HOME/work</p>
+<div class="highlight"><pre><span></span>mkdir -p ~/work/src/github.com/user/hello inside
+</pre></div>
+
+
+<p>Exportar variável de ambiente</p>
+<div class="highlight"><pre><span></span><span class="x">echo  &#39;export GOPATH=</span><span class="p">$</span><span class="nv">HOME</span><span class="x">/work&#39; &gt;&gt; ~/.bashrc</span>
+</pre></div>
+
+
+<p>Crie um arquivo chamdo hello.go no seguinte diretório ~/work/src/github.com/user/hello . 
+Altere user para seu usuário do github</p>
+<div class="highlight"><pre><span></span>vi ~/work/src/github.com/user/hello/hello.go
+</pre></div>
+
+
+<p>Colar o seguinte conteúdo no arquivo</p>
+<div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">main</span>
+
+<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
+
+<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;hello, world</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>E agora compilar</p>
+<div class="highlight"><pre><span></span>go install github.com/user/hello
+</pre></div>
+
+
+<p>Então executar</p>
+<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">GOPATH</span><span class="x">/bin/hello</span>
+</pre></div>
+
+
+<p>Se você ver p "hello, word" , então sua instalação do GO está funcionando.</p>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="https://travis-ci.org/">Travis-CI</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/Bleno">Github</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-71083804-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>
