@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
         <meta charset="utf-8" />
-        <title>Bleno Developer</title>
+        <title>Bleno Developer - nodejs</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bleno Developer Atom Feed" />
 
@@ -19,26 +19,54 @@
                     <li><a href="/category/programacao.html">Programação</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
-<section id="content" class="body">
-<h1>Archives for Bleno Developer</h1>
 
-<dl>
-    <dt>Fri 25 December 2015</dt>
-    <dd><a href="/instalando-diferentes-versões-de-python-com-pyenv.html">Instalando diferentes versões de Python com pyenv</a></dd>
-    <dt>Sat 11 July 2015</dt>
-    <dd><a href="/instalando-nodejs.html">Instalando Node JS Ubuntu 14.04</a></dd>
-    <dt>Sun 07 June 2015</dt>
-    <dd><a href="/instalando-go.html">Instalando Go</a></dd>
-    <dt>Wed 15 April 2015</dt>
-    <dd><a href="/gerenciando-virtualenv-com-pyenv-virtualenv.html">Gerenciando virtualenv com pyenv-virtualenv</a></dd>
-    <dt>Sat 11 April 2015</dt>
-    <dd><a href="/instalando-docker-ubuntu-14-04.html">Instalando Docker Ubuntu 14.04</a></dd>
-    <dt>Tue 20 January 2015</dt>
-    <dd><a href="/instalando-elastic-kibana-no-ubuntu-14-04.html">Instalando Elastic com Kibana no Ubuntu 14.04</a></dd>
-    <dt>Tue 20 January 2015</dt>
-    <dd><a href="/instalando-o-tornado-web-framework.html">Instalando o Tornado Web Framework</a></dd>
-</dl>
-</section>
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/instalando-nodejs.html">Instalando Node JS Ubuntu 14.04</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-07-11T16:24:00-03:00">
+                Published: Sat 11 July 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-07-11T16:24:00-03:00">
+                Updated: Sat 11 July 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
+        </address>
+<p>In <a href="/category/programacao.html">Programação</a>.</p>
+<p>tags: <a href="/tag/nodejs.html">nodejs</a> <a href="/tag/node.html">node</a> <a href="/tag/js.html">js</a> <a href="/tag/instalar.html">instalar</a> <a href="/tag/javascript.html">javascript</a> <a href="/tag/npm.html">npm</a> <a href="/tag/package-manager.html">package manager</a> </p>
+</footer><!-- /.post-info --><h1>Instalando via script</h1>
+<p>Esse script automatiza o processo de adicionar repositório.</p>
+<div class="highlight"><pre><span></span>curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+</pre></div>
+
+
+<h1>Executando a instalação</h1>
+<div class="highlight"><pre><span></span>sudo apt-get install -y nodejs
+</pre></div>
+
+
+<h1>Atualizando npm</h1>
+<div class="highlight"><pre><span></span>sudo npm install npm -g
+</pre></div>
+
+
+<h2>Para compilar algumas ferramentas nativas é necessário instalar o build tools</h2>
+<div class="highlight"><pre><span></span>sudo apt-get install -y build-essential
+</pre></div>
+
+
+<h1>Referências:</h1>
+<ul>
+<li><a href="https://docs.npmjs.com/getting-started/installing-node#updating-npm">https://docs.npmjs.com/getting-started/installing-node#updating-npm</a></li>
+<li><a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions">https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions</a></li>
+</ul>                </article>
+<p class="paginator">
+    Page 1 / 1
+</p>
+            </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>

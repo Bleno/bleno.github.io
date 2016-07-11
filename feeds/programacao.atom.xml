@@ -78,7 +78,32 @@ Remova  o diretório pyenv shims da várial PATH&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Para mais informações do projeto&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/yyuu/pyenv"&gt;https://github.com/yyuu/pyenv&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="Python"></category><category term="pyenv"></category></entry><entry><title>Instalando Go</title><link href="/instalando-go.html" rel="alternate"></link><published>2015-06-07T16:29:00-03:00</published><author><name>Bleno Silva</name></author><id>tag:,2015-06-07:instalando-go.html</id><summary type="html">&lt;h1&gt;Baixar e extrair no diretório /usr/local&lt;/h1&gt;
+&lt;/blockquote&gt;</summary><category term="Python"></category><category term="pyenv"></category></entry><entry><title>Instalando Node JS Ubuntu 14.04</title><link href="/instalando-nodejs.html" rel="alternate"></link><published>2015-07-11T16:24:00-03:00</published><author><name>Bleno Silva</name></author><id>tag:,2015-07-11:instalando-nodejs.html</id><summary type="html">&lt;h1&gt;Instalando via script&lt;/h1&gt;
+&lt;p&gt;Esse script automatiza o processo de adicionar repositório.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Executando a instalação&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install -y nodejs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Atualizando npm&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo npm install npm -g
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Para compilar algumas ferramentas nativas é necessário instalar o build tools&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install -y build-essential
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Referências:&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.npmjs.com/getting-started/installing-node#updating-npm"&gt;https://docs.npmjs.com/getting-started/installing-node#updating-npm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions"&gt;https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="nodejs"></category><category term="node"></category><category term="js"></category><category term="instalar"></category><category term="javascript"></category><category term="npm"></category><category term="package manager"></category></entry><entry><title>Instalando Go</title><link href="/instalando-go.html" rel="alternate"></link><published>2015-06-07T16:29:00-03:00</published><author><name>Bleno Silva</name></author><id>tag:,2015-06-07:instalando-go.html</id><summary type="html">&lt;h1&gt;Baixar e extrair no diretório /usr/local&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -182,7 +207,7 @@ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58
 
 
 &lt;p&gt;Adicionar o seu usuário ao grupo docker para executar os comandos docker sem precisar de sudo.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo usermod -aG docker neolight
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo usermod -aG docker username
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -226,7 +251,7 @@ Unable to find image 'hello-world:latest' locally
 
 &lt;p&gt;ou
     bash&lt;/p&gt;
-&lt;h1&gt;Instalação via repositório&lt;/h1&gt;
+&lt;h1&gt;Instalação via repositório (manual)&lt;/h1&gt;
 &lt;h2&gt;Criar arquivo&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo vi /etc/apt/sources.list.d/docker.list
 &lt;/pre&gt;&lt;/div&gt;
@@ -271,7 +296,7 @@ $ sudo reboot
 sudo apt-get install docker-engine
 
 sudo service docker start
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Docker"></category><category term="Container"></category></entry><entry><title>Instalando Elastic com Kibana no Ubuntu 14.04</title><link href="/instalando-elastic-kibana-no-ubuntu-14-04.html" rel="alternate"></link><published>2015-04-15T08:49:00-03:00</published><author><name>Bleno Silva</name></author><id>tag:,2015-01-20:instalando-elastic-kibana-no-ubuntu-14-04.html</id><summary type="html">&lt;p&gt;=== Instalando Elastic com Kibana no Ubuntu 14.04 ===&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Docker"></category><category term="Container"></category><category term="Ferramentas"></category></entry><entry><title>Instalando Elastic com Kibana no Ubuntu 14.04</title><link href="/instalando-elastic-kibana-no-ubuntu-14-04.html" rel="alternate"></link><published>2015-04-15T08:49:00-03:00</published><author><name>Bleno Silva</name></author><id>tag:,2015-01-20:instalando-elastic-kibana-no-ubuntu-14-04.html</id><summary type="html">&lt;p&gt;=== Instalando Elastic com Kibana no Ubuntu 14.04 ===&lt;/p&gt;
 &lt;h1&gt;Dependências ====&lt;/h1&gt;
 &lt;h2&gt;instalação do Java 7&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo add-apt-repository ppa:webupd8team/java &amp;amp;&amp;amp; sudo apt-get update
