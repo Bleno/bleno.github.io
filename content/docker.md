@@ -2,7 +2,7 @@ Title: Instalando Docker Ubuntu 14.04
 Date: 2015-04-11 10:00
 Modified: 2015-04-15 09:23
 Category: Programação
-Tags: Docker, Container
+Tags: Docker, Container, Ferramentas
 Slug: instalando-docker-ubuntu-14-04
 Authors: Bleno Silva
 Summary: Docker Container
@@ -26,7 +26,7 @@ Baixar e executar o script bash de instalação. O script já adiciona o reposit
 
 Adicionar o seu usuário ao grupo docker para executar os comandos docker sem precisar de sudo.
 
-    sudo usermod -aG docker neolight
+    sudo usermod -aG docker username
 
 Apartir daqui já é possível usar e fazer o hello word docker =)
 
@@ -66,7 +66,7 @@ Caso ocorra o seguinte erro docker: <pre>Cannot connect to the Docker daemon. Is
 ou
     bash
 
-# Instalação via repositório
+# Instalação via repositório (manual)
 
 ## Criar arquivo
 
@@ -87,9 +87,9 @@ Dentro do arquivo
 * Ubuntu Wily 15.10
 * Ubuntu Trusty 14.04 (LTS)
 
-	sudo apt-get update
+    sudo apt-get update
 
-	sudo apt-get install linux-image-extra-$(uname -r)
+    sudo apt-get install linux-image-extra-$(uname -r)
 
 
 > Ubuntu Precise 12.04 (LTS)
