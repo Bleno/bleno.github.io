@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
         <meta charset="utf-8" />
-        <title>Bleno Developer - Language</title>
+        <title>Instalando e usando docker compose</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bleno Developer Atom Feed" />
 
@@ -16,81 +16,52 @@
                 <h1><a href="/">Bleno Developer </a></h1>
                 <nav><ul>
                     <li><a href="/pages/about.html">About</a></li>
-                    <li><a href="/category/infraestrutura.html">Infraestrutura</a></li>
+                    <li class="active"><a href="/category/infraestrutura.html">Infraestrutura</a></li>
                     <li><a href="/category/programacao.html">Programação</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/drafts/instalando-e-usando-docker-compose.html" rel="bookmark"
+           title="Permalink to Instalando e usando docker compose">Instalando e usando docker compose</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/instalando-go.html">Instalando Go</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2015-06-07T16:29:00-03:00">
-                Published: Sun 07 June 2015
+        <abbr class="published" title="2016-12-26T11:53:00-02:00">
+                Published: Mon 26 December 2016
         </abbr>
 		<br />
-        <abbr class="modified" title="2015-06-07T16:29:00-03:00">
-                Updated: Sun 07 June 2015
+        <abbr class="modified" title="2016-12-26T11:53:00-02:00">
+                Updated: Mon 26 December 2016
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
         </address>
-<p>In <a href="/category/programacao.html">Programação</a>.</p>
-<p>tags: <a href="/tag/language.html">Language</a> <a href="/tag/programmer.html">Programmer</a> <a href="/tag/install.html">Install</a> <a href="/tag/go.html">Go</a> <a href="/tag/compile.html">Compile</a> <a href="/tag/hello-word.html">Hello Word</a> </p>
-</footer><!-- /.post-info --><h1>Baixar e extrair no diretório /usr/local</h1>
-<div class="highlight"><pre><span></span>tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
+<p>In <a href="/category/infraestrutura.html">Infraestrutura</a>.</p>
+<p>tags: <a href="/tag/docker.html">Docker</a> <a href="/tag/container.html">Container</a> <a href="/tag/compose.html">Compose</a> <a href="/tag/ferramentas.html">Ferramentas</a> </p>
+</footer><!-- /.post-info -->      <h1>Verifique se já possui o docker instalado</h1>
+<p>Caso não tenha do docker instalado veja instalando o docker para mais informações</p>
+<h1>Instalado o docker compose</h1>
+<p>Com o docker instalado instale o python-pip</p>
+<div class="highlight"><pre><span></span>$ sudo apt-get install -y python-pip
 </pre></div>
 
 
-<h1>Exportar variável de ambiente</h1>
-<div class="highlight"><pre><span></span>echo &#39;export PATH=$PATH:/usr/local/go/bin&#39; &gt;&gt; ~/.bashrc
+<p>Então, você pode instalar o Docker Compose:</p>
+<div class="highlight"><pre><span></span>$ sudo pip install docker-compose
 </pre></div>
 
 
-<h1>Teste sua instalação</h1>
-<p>Vamos criar um workspace no seguinte diretório $HOME/work</p>
-<div class="highlight"><pre><span></span>mkdir -p ~/work/src/github.com/user/hello inside
-</pre></div>
+<h1>Executando um container com Docker Compose</h1>
+<h2>Exemplo wordpress</h2>
+    </div><!-- /.entry-content -->
 
-
-<p>Exportar variável de ambiente</p>
-<div class="highlight"><pre><span></span>echo  &#39;export GOPATH=$HOME/work&#39; &gt;&gt; ~/.bashrc
-</pre></div>
-
-
-<p>Crie um arquivo chamdo hello.go no seguinte diretório ~/work/src/github.com/user/hello . 
-Altere user para seu usuário do github</p>
-<div class="highlight"><pre><span></span>vi ~/work/src/github.com/user/hello/hello.go
-</pre></div>
-
-
-<p>Colar o seguinte conteúdo no arquivo</p>
-<div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">main</span>
-
-<span class="kn">import</span> <span class="s2">&quot;fmt&quot;</span>
-
-<span class="n">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s2">&quot;hello, world</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>E agora compilar</p>
-<div class="highlight"><pre><span></span>go install github.com/user/hello
-</pre></div>
-
-
-<p>Então executar</p>
-<div class="highlight"><pre><span></span>$GOPATH/bin/hello
-</pre></div>
-
-
-<p>Se você ver p "hello, word" , então sua instalação do GO está funcionando.</p>                </article>
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </aside><!-- /#featured -->
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>

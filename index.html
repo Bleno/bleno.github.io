@@ -16,13 +16,135 @@
                 <h1><a href="/">Bleno Developer </a></h1>
                 <nav><ul>
                     <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/category/infraestrutura.html">Infraestrutura</a></li>
                     <li><a href="/category/programacao.html">Programação</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/instalando-diferentes-versões-de-python-com-pyenv.html">Instalando diferentes versões de Python com pyenv</a></h1>
+                    <h1 class="entry-title"><a href="/certificado-ssl-para-website-com-nginx.html">Certificado SSL Para Website com NGINX</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2016-11-09T12:00:00-02:00">
+                Published: Wed 09 November 2016
+        </abbr>
+		<br />
+        <abbr class="modified" title="2016-11-09T12:00:00-02:00">
+                Updated: Wed 09 November 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
+        </address>
+<p>In <a href="/category/infraestrutura.html">Infraestrutura</a>.</p>
+<p>tags: <a href="/tag/web.html">Web</a> <a href="/tag/webserver.html">Webserver</a> <a href="/tag/ssl.html">SSL</a> <a href="/tag/certificado.html">Certificado</a> <a href="/tag/nginx.html">NGINX</a> <a href="/tag/ubuntu.html">Ubuntu</a> <a href="/tag/centos.html">Centos</a> </p>
+</footer><!-- /.post-info --><h1>Introdução</h1>
+<p><a href="https://certbot.eff.org/">Certbot</a> é um automatizador para instalação de certificados SSL da <a href="https://letsencrypt.org/">Let's Encrypt</a>. 
+Como os certificados da Let's Encrypt são válidos por apenas 3 meses a ideia do certbot é também 
+automatizar a renovação desse certificado.</p>
+<h2>Instalar</h2>
+<p>Fazer o download e instalação do certbot-auto script</p>
+<h3>Ubuntu</h3>
+<p>Download</p>
+<div class="highlight"><pre><span></span>wget https://dl.eff.org/certbot-auto
+</pre></div>
+
+
+<p>Permissão de execução</p>
+<div class="highlight"><pre><span></span>chmod a+x certbot-auto
+</pre></div>
+
+
+<p>certbot-auto instala suas proprias dependêncies inclusive atualiza seu proprio cidigo cliente</p>
+<div class="highlight"><pre><span></span>$ ./certbot-auto
+</pre></div>
+
+
+<h3>Centos 7</h3>
+<p>Verifique se você tem os repositório EPEL repository habilitado, caso não habilite com o seguinte processo <a href="https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F">enable the EPEL repository.</a>
+obs: Caso seja Centos 6 pode ser realizado o mesmo processo do ubuntu.</p>
+<div class="highlight"><pre><span></span> $ sudo yum install certbot
+</pre></div>
+
+
+<h2>Gerar o certicado</h2>
+<p>No caso vou gerar o certicado para os seguintes domínios: www.exemple.com exemple.com e api.exemple.com 
+usando a opção standalone do certbot-auto, é aconselhável parar o serviço do webserver nginx.</p>
+<h3>ubuntu</h3>
+<div class="highlight"><pre><span></span>$ ./path/to/certbot-auto certonly --standalone -d example.com -d www.example.com -d api.example.com
+</pre></div>
+
+
+<h3>centos 7</h3>
+<div class="highlight"><pre><span></span>$ certbot certonly --standalone -d example.com -d www.example.com -d api.example.com
+</pre></div>
+
+
+<p>Os certificado são gerados em um caminhodo lets'encrypt parecido com o seguinte</p>
+<div class="highlight"><pre><span></span>/etc/letsencrypt/live/example.com/fullchain.pem
+</pre></div>
+
+
+<h2>Automatizando e renovando</h2>
+<p>Como disse no inicio, o certificado da Let's Encrypt é válido por 90 dias, então para que seus usuários não sejam pegos de surpresa é altamente recomendável 
+que seja feita a renovação o quanto antes.</p>
+<p>Primeiro verifique se o comando de renovação pode ser executado com sucesso, (talvez seja necessário para o servidor web no caso Nginx)</p>
+<h3>Ubuntu</h3>
+<div class="highlight"><pre><span></span>./path/to/certbot-auto renew --dry-run
+</pre></div>
+
+
+<h3>Centos 7</h3>
+<div class="highlight"><pre><span></span>$ certbot renew --dry-run
+</pre></div>
+
+
+<p>Para renovar o certificado poder ser executado o seguinte comando, o parâmetro --quiet não gera log 
+e o parâmetro --no-self-upgrade</p>
+<h3>Ubunutu</h3>
+<div class="highlight"><pre><span></span>./path/to/certbot-auto renew --quiet --no-self-upgrade
+</pre></div>
+
+
+<h3>Centos 7</h3>
+<div class="highlight"><pre><span></span>$ certbot renew --quiet --no-self-upgrade
+</pre></div>
+
+
+<p>Pode ser feito un cron para executar esse processo, de renovação.</p>
+<div class="highlight"><pre><span></span>$ sudo crontab -e
+</pre></div>
+
+
+<p>Adicione a seguinte tarefa</p>
+<div class="highlight"><pre><span></span>* 2 * * * /path/to/certbot-auto renew &gt;&gt; /var/log/certbot-auto.log
+</pre></div>
+
+
+<p>Será executado todos os dias as 2 am em um minuto aleatório(recomendado pelo certbot)</p>
+<blockquote>
+<p>Certbot recomenda também que essa tarefa seja executado duas vezes ao dia para garantir sua funcionalidade,
+isso vai ao seu critério.</p>
+</blockquote>
+<h1>Referências</h1>
+<ul>
+<li><a href="https://letsencrypt.org/">https://letsencrypt.org/</a></li>
+<li><a href="https://certbot.eff.org/">https://certbot.eff.org/</a></li>
+<li><a href="http://www.infowester.com/linuxcron.php">http://www.infowester.com/linuxcron.php</a></li>
+</ul>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/instalando-diferentes-versões-de-python-com-pyenv.html" rel="bookmark"
+                           title="Permalink to Instalando diferentes versões de Python com pyenv">Instalando diferentes versões de Python com pyenv</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2015-12-25T21:08:00-02:00">
                 Published: Fri 25 December 2015
@@ -37,91 +159,10 @@
         </address>
 <p>In <a href="/category/programacao.html">Programação</a>.</p>
 <p>tags: <a href="/tag/python.html">Python</a> <a href="/tag/pyenv.html">pyenv</a> </p>
-</footer><!-- /.post-info --><blockquote>
-<p>Hoje resolvi falar do <strong>pyenv</strong>, que é nada mais nada menos que um gerenciador para instalações de interpretador Python.</p>
-<p><strong>Pyenv</strong> é um simples e magnifico gerenciador de versões Python, essa ferramenta permite instalar várias versões do interpretador Python e alternar entre elas. O que pode facilitar muito para testar aplicações em diversas versões.</p>
-<h2>O que o pyenv faz?</h2>
-<ul>
-<li>Permite que você altere a versão global do Python</li>
-<li>Alternar entre versões por projeto Python</li>
-<li>Permitem substituir a versão Python com uma variável de ambiente.</li>
-<li>Pesquisa comandos a partir de múltiplas versões do Python em um momento. Isto pode ser útil para testar em todas as versões do Python com <a href="https://pypi.python.org/pypi/tox" title="Clique e conheça">tox</a></li>
-</ul>
-<h2>Como funciona?</h2>
-<p>Então, por alto, o <strong>pyenv</strong> intercepta comandos Python usando o executável shim que foi colocado na variável de ambiente PATH, no qual determina a versão do Python foi solicitada pela sua aplicação, e passa seus comando junto com a correta instalação Python.
-</p>
-<h2>Instalação</h2>
-<h4>Existe a instalação automática</h4>
-<p><a href="https://github.com/yyuu/pyenv-installer">pyenv-installer</a></p>
-<p>e a instalação manual que é muito fácil também =).</p>
-<h4>Instalação manual:</h4>
-<p>É basicamente um clone do projeto, um ótimo local para instalação é [$HOME/.pyenv] , mas você pode instalar em qualquer lugar que desejar =).</p>
-<div class="highlight"><pre><span></span>$ git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-</pre></div>
-
-
-<p>Definir a variável de ambiente PYENV_ROOT:</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#39;</span> &gt;&gt; ~/.bashrc
-$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
-</pre></div>
-
-
-<p>Adicionar pyenv init ao seu shel:</p>
-</blockquote>
-<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(pyenv init -)&quot;&#39;</span> &gt;&gt; ~/.bashrc
-</pre></div>
-
-
-<blockquote>
-<p>Reiniciar o shel para que as alterações façam efeito:</p>
-<div class="highlight"><pre><span></span><span class="x">exec </span><span class="p">$</span><span class="nv">SHELL</span><span class="x"></span>
-</pre></div>
-
-
-<p>Instalar Python. As versões do Python são instaladas em $PYENV_ROOT/versions. Por exemplo vou instalar o Python 3.5.1</p>
-<div class="highlight"><pre><span></span>$ pyenv install 3.5.1
-</pre></div>
-
-
-<h2>Atualizando</h2>
-<p>Se você já tem o <strong>pyenv</strong> instalado, você pode atualizar usando o comando git pull:</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/.pyenv
-$ git pull
-</pre></div>
-
-
-<h2>Comando básicos do <strong>pyenv</strong>:</h2>
-<div class="highlight"><pre><span></span>pyenv install x.x.x #instala uma versão específica do Python
-pyenv uninstall x.x.x #desinstala uma versão específica do Python
-pyenv versions # lista todas versões de Python instalada
-pyenv global # Mostra a versão do Python global ou configura passando o número da versão como parâmetro
-</pre></div>
-
-
-<h4>Para mais informações e ajuda:</h4>
-<div class="highlight"><pre><span></span>pyenv help &lt;comando&gt; # Para informações específicas sobre um comando.
-</pre></div>
-
-
-<h2>Desinstalando <strong>pyenv</strong></h2>
-<p>Remova a linha pyenv init do seu shel (.bashrc)
-Remova  o diretório pyenv shims da várial PATH</p>
-<p>Então, remova todas as versões de Python instaladas</p>
-<div class="highlight"><pre><span></span>rm -rf `pyenv root`
-</pre></div>
-
-
-</blockquote>
-<h2>Local do projeto:</h2>
-<blockquote>
-<p>Para mais informações do projeto</p>
-<p><a href="https://github.com/yyuu/pyenv">https://github.com/yyuu/pyenv</a></p>
-</blockquote>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>Instalar pyenv</p>
+                <a class="readmore" href="/instalando-diferentes-versões-de-python-com-pyenv.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

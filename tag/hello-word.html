@@ -16,6 +16,7 @@
                 <h1><a href="/">Bleno Developer </a></h1>
                 <nav><ul>
                     <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/category/infraestrutura.html">Infraestrutura</a></li>
                     <li><a href="/category/programacao.html">Programação</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
@@ -43,7 +44,7 @@
 
 
 <h1>Exportar variável de ambiente</h1>
-<div class="highlight"><pre><span></span><span class="x">echo &#39;export PATH=</span><span class="p">$</span><span class="nv">PATH</span><span class="x">:/usr/local/go/bin&#39; &gt;&gt; ~/.bashrc</span>
+<div class="highlight"><pre><span></span>echo &#39;export PATH=$PATH:/usr/local/go/bin&#39; &gt;&gt; ~/.bashrc
 </pre></div>
 
 
@@ -54,7 +55,7 @@
 
 
 <p>Exportar variável de ambiente</p>
-<div class="highlight"><pre><span></span><span class="x">echo  &#39;export GOPATH=</span><span class="p">$</span><span class="nv">HOME</span><span class="x">/work&#39; &gt;&gt; ~/.bashrc</span>
+<div class="highlight"><pre><span></span>echo  &#39;export GOPATH=$HOME/work&#39; &gt;&gt; ~/.bashrc
 </pre></div>
 
 
@@ -81,7 +82,7 @@ Altere user para seu usuário do github</p>
 
 
 <p>Então executar</p>
-<div class="highlight"><pre><span></span><span class="p">$</span><span class="nv">GOPATH</span><span class="x">/bin/hello</span>
+<div class="highlight"><pre><span></span>$GOPATH/bin/hello
 </pre></div>
 
 
