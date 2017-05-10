@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Bleno Developer</title><link href="/" rel="alternate"></link><link href="/feeds/infraestrutura.atom.xml" rel="self"></link><id>/</id><updated>2016-11-09T12:00:00-02:00</updated><entry><title>Certificado SSL Para Website com NGINX</title><link href="/certificado-ssl-para-website-com-nginx.html" rel="alternate"></link><published>2016-11-09T12:00:00-02:00</published><updated>2016-11-09T12:00:00-02:00</updated><author><name>Bleno Silva</name></author><id>tag:,2016-11-09:certificado-ssl-para-website-com-nginx.html</id><summary type="html">&lt;h1&gt;Introdução&lt;/h1&gt;
 &lt;p&gt;&lt;a href="https://certbot.eff.org/"&gt;Certbot&lt;/a&gt; é um automatizador para instalação de certificados SSL da &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;. 
-Como os certificados da Let's Encrypt são válidos por apenas 3 meses a ideia do certbot é também 
-automatizar a renovação desse certificado.&lt;/p&gt;
+Como os certificados da Let's Encrypt são válidos por apenas 3 meses a ideia do certbot é&lt;br /&gt;
+automatizar a renovação desse certificado além de criar o certificado.&lt;/p&gt;
 &lt;h2&gt;Instalar&lt;/h2&gt;
 &lt;p&gt;Fazer o download e instalação do certbot-auto script&lt;/p&gt;
 &lt;h3&gt;Ubuntu&lt;/h3&gt;
@@ -16,13 +16,13 @@ automatizar a renovação desse certificado.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;certbot-auto instala suas proprias dependêncies inclusive atualiza seu proprio cidigo cliente&lt;/p&gt;
+&lt;p&gt;certbot-auto instala suas próprias dependêncies inclusive atualiza seu próprio código cliente&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ./certbot-auto
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Centos 7&lt;/h3&gt;
-&lt;p&gt;Verifique se você tem os repositório EPEL repository habilitado, caso não habilite com o seguinte processo &lt;a href="https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F"&gt;enable the EPEL repository.&lt;/a&gt;
+&lt;p&gt;Verifique se você tem os repositório EPEL repository habilitado, caso não, habilite com o seguinte processo &lt;a href="https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F"&gt;enable the EPEL repository.&lt;/a&gt;
 obs: Caso seja Centos 6 pode ser realizado o mesmo processo do ubuntu.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; $ sudo yum install certbot
 &lt;/pre&gt;&lt;/div&gt;
@@ -30,7 +30,7 @@ obs: Caso seja Centos 6 pode ser realizado o mesmo processo do ubuntu.&lt;/p&gt;
 
 &lt;h2&gt;Gerar o certicado&lt;/h2&gt;
 &lt;p&gt;No caso vou gerar o certicado para os seguintes domínios: www.exemple.com exemple.com e api.exemple.com 
-usando a opção standalone do certbot-auto, é aconselhável parar o serviço do webserver nginx.&lt;/p&gt;
+usando a opção standalone do certbot-auto, no qual é aconselhável parar o serviço do webserver nginx.&lt;/p&gt;
 &lt;h3&gt;ubuntu&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ ./path/to/certbot-auto certonly --standalone -d example.com -d www.example.com -d api.example.com
 &lt;/pre&gt;&lt;/div&gt;
@@ -41,7 +41,7 @@ usando a opção standalone do certbot-auto, é aconselhável parar o serviço d
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Os certificado são gerados em um caminhodo lets'encrypt parecido com o seguinte&lt;/p&gt;
+&lt;p&gt;Os certificados são gerados no caminho parecido com o seguinte&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/etc/letsencrypt/live/example.com/fullchain.pem
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -49,7 +49,7 @@ usando a opção standalone do certbot-auto, é aconselhável parar o serviço d
 &lt;h2&gt;Automatizando e renovando&lt;/h2&gt;
 &lt;p&gt;Como disse no inicio, o certificado da Let's Encrypt é válido por 90 dias, então para que seus usuários não sejam pegos de surpresa é altamente recomendável 
 que seja feita a renovação o quanto antes.&lt;/p&gt;
-&lt;p&gt;Primeiro verifique se o comando de renovação pode ser executado com sucesso, (talvez seja necessário para o servidor web no caso Nginx)&lt;/p&gt;
+&lt;p&gt;Primeiro verifique se o comando de renovação pode ser executado com sucesso, (talvez seja necessário parar o servidor web no caso Nginx)&lt;/p&gt;
 &lt;h3&gt;Ubuntu&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./path/to/certbot-auto renew --dry-run
 &lt;/pre&gt;&lt;/div&gt;
@@ -72,7 +72,7 @@ e o parâmetro --no-self-upgrade&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Pode ser feito un cron para executar esse processo, de renovação.&lt;/p&gt;
+&lt;p&gt;Pode ser feito um cron para executar esse processo, de renovação.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo crontab -e
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -82,7 +82,7 @@ e o parâmetro --no-self-upgrade&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Será executado todos os dias as 2 am em um minuto aleatório(recomendado pelo certbot)&lt;/p&gt;
+&lt;p&gt;Será executado todos os dias às 2 AM em um minuto aleatório(recomendado pelo certbot)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Certbot recomenda também que essa tarefa seja executado duas vezes ao dia para garantir sua funcionalidade,
 isso vai ao seu critério.&lt;/p&gt;

@@ -40,8 +40,8 @@
 <p>tags: <a href="/tag/web.html">Web</a> <a href="/tag/webserver.html">Webserver</a> <a href="/tag/ssl.html">SSL</a> <a href="/tag/certificado.html">Certificado</a> <a href="/tag/nginx.html">NGINX</a> <a href="/tag/ubuntu.html">Ubuntu</a> <a href="/tag/centos.html">Centos</a> </p>
 </footer><!-- /.post-info --><h1>Introdução</h1>
 <p><a href="https://certbot.eff.org/">Certbot</a> é um automatizador para instalação de certificados SSL da <a href="https://letsencrypt.org/">Let's Encrypt</a>. 
-Como os certificados da Let's Encrypt são válidos por apenas 3 meses a ideia do certbot é também 
-automatizar a renovação desse certificado.</p>
+Como os certificados da Let's Encrypt são válidos por apenas 3 meses a ideia do certbot é<br />
+automatizar a renovação desse certificado além de criar o certificado.</p>
 <h2>Instalar</h2>
 <p>Fazer o download e instalação do certbot-auto script</p>
 <h3>Ubuntu</h3>
@@ -55,13 +55,13 @@ automatizar a renovação desse certificado.</p>
 </pre></div>
 
 
-<p>certbot-auto instala suas proprias dependêncies inclusive atualiza seu proprio cidigo cliente</p>
+<p>certbot-auto instala suas próprias dependêncies inclusive atualiza seu próprio código cliente</p>
 <div class="highlight"><pre><span></span>$ ./certbot-auto
 </pre></div>
 
 
 <h3>Centos 7</h3>
-<p>Verifique se você tem os repositório EPEL repository habilitado, caso não habilite com o seguinte processo <a href="https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F">enable the EPEL repository.</a>
+<p>Verifique se você tem os repositório EPEL repository habilitado, caso não, habilite com o seguinte processo <a href="https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F">enable the EPEL repository.</a>
 obs: Caso seja Centos 6 pode ser realizado o mesmo processo do ubuntu.</p>
 <div class="highlight"><pre><span></span> $ sudo yum install certbot
 </pre></div>
@@ -69,7 +69,7 @@ obs: Caso seja Centos 6 pode ser realizado o mesmo processo do ubuntu.</p>
 
 <h2>Gerar o certicado</h2>
 <p>No caso vou gerar o certicado para os seguintes domínios: www.exemple.com exemple.com e api.exemple.com 
-usando a opção standalone do certbot-auto, é aconselhável parar o serviço do webserver nginx.</p>
+usando a opção standalone do certbot-auto, no qual é aconselhável parar o serviço do webserver nginx.</p>
 <h3>ubuntu</h3>
 <div class="highlight"><pre><span></span>$ ./path/to/certbot-auto certonly --standalone -d example.com -d www.example.com -d api.example.com
 </pre></div>
@@ -80,7 +80,7 @@ usando a opção standalone do certbot-auto, é aconselhável parar o serviço d
 </pre></div>
 
 
-<p>Os certificado são gerados em um caminhodo lets'encrypt parecido com o seguinte</p>
+<p>Os certificados são gerados no caminho parecido com o seguinte</p>
 <div class="highlight"><pre><span></span>/etc/letsencrypt/live/example.com/fullchain.pem
 </pre></div>
 
@@ -88,7 +88,7 @@ usando a opção standalone do certbot-auto, é aconselhável parar o serviço d
 <h2>Automatizando e renovando</h2>
 <p>Como disse no inicio, o certificado da Let's Encrypt é válido por 90 dias, então para que seus usuários não sejam pegos de surpresa é altamente recomendável 
 que seja feita a renovação o quanto antes.</p>
-<p>Primeiro verifique se o comando de renovação pode ser executado com sucesso, (talvez seja necessário para o servidor web no caso Nginx)</p>
+<p>Primeiro verifique se o comando de renovação pode ser executado com sucesso, (talvez seja necessário parar o servidor web no caso Nginx)</p>
 <h3>Ubuntu</h3>
 <div class="highlight"><pre><span></span>./path/to/certbot-auto renew --dry-run
 </pre></div>
@@ -111,7 +111,7 @@ e o parâmetro --no-self-upgrade</p>
 </pre></div>
 
 
-<p>Pode ser feito un cron para executar esse processo, de renovação.</p>
+<p>Pode ser feito um cron para executar esse processo, de renovação.</p>
 <div class="highlight"><pre><span></span>$ sudo crontab -e
 </pre></div>
 
@@ -121,7 +121,7 @@ e o parâmetro --no-self-upgrade</p>
 </pre></div>
 
 
-<p>Será executado todos os dias as 2 am em um minuto aleatório(recomendado pelo certbot)</p>
+<p>Será executado todos os dias às 2 AM em um minuto aleatório(recomendado pelo certbot)</p>
 <blockquote>
 <p>Certbot recomenda também que essa tarefa seja executado duas vezes ao dia para garantir sua funcionalidade,
 isso vai ao seu critério.</p>
