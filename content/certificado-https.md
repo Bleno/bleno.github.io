@@ -10,8 +10,8 @@ Summary: Docker Container
 # Introdução
 
 [Certbot](https://certbot.eff.org/) é um automatizador para instalação de certificados SSL da [Let's Encrypt](https://letsencrypt.org/). 
-Como os certificados da Let's Encrypt são válidos por apenas 3 meses a ideia do certbot é também 
-automatizar a renovação desse certificado.
+Como os certificados da Let's Encrypt são válidos por apenas 3 meses a ideia do certbot é  
+automatizar a renovação desse certificado além de criar o certificado.
 
 ## Instalar
 
@@ -27,13 +27,13 @@ Permissão de execução
 
     chmod a+x certbot-auto
 
-certbot-auto instala suas proprias dependêncies inclusive atualiza seu proprio cidigo cliente
+certbot-auto instala suas próprias dependêncies inclusive atualiza seu próprio código cliente
 
     $ ./certbot-auto
 
 ### Centos 7
 
-Verifique se você tem os repositório EPEL repository habilitado, caso não habilite com o seguinte processo [enable the EPEL repository.](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F)
+Verifique se você tem os repositório EPEL repository habilitado, caso não, habilite com o seguinte processo [enable the EPEL repository.](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F)
 obs: Caso seja Centos 6 pode ser realizado o mesmo processo do ubuntu.
      
      $ sudo yum install certbot
@@ -45,7 +45,7 @@ obs: Caso seja Centos 6 pode ser realizado o mesmo processo do ubuntu.
 
 
 No caso vou gerar o certicado para os seguintes domínios: www.exemple.com exemple.com e api.exemple.com 
-usando a opção standalone do certbot-auto, é aconselhável parar o serviço do webserver nginx.
+usando a opção standalone do certbot-auto, no qual é aconselhável parar o serviço do webserver nginx.
 
 
 ### ubuntu
@@ -57,7 +57,7 @@ usando a opção standalone do certbot-auto, é aconselhável parar o serviço d
     $ certbot certonly --standalone -d example.com -d www.example.com -d api.example.com
 
 
-Os certificado são gerados em um caminhodo lets'encrypt parecido com o seguinte
+Os certificados são gerados no caminho parecido com o seguinte
 
     /etc/letsencrypt/live/example.com/fullchain.pem
 
@@ -69,7 +69,7 @@ Os certificado são gerados em um caminhodo lets'encrypt parecido com o seguinte
 Como disse no inicio, o certificado da Let's Encrypt é válido por 90 dias, então para que seus usuários não sejam pegos de surpresa é altamente recomendável 
 que seja feita a renovação o quanto antes.
 
-Primeiro verifique se o comando de renovação pode ser executado com sucesso, (talvez seja necessário para o servidor web no caso Nginx)
+Primeiro verifique se o comando de renovação pode ser executado com sucesso, (talvez seja necessário parar o servidor web no caso Nginx)
 
 
 ###  Ubuntu
@@ -94,7 +94,7 @@ e o parâmetro --no-self-upgrade
 
     $ certbot renew --quiet --no-self-upgrade
 
-Pode ser feito un cron para executar esse processo, de renovação.
+Pode ser feito um cron para executar esse processo, de renovação.
 
 
     $ sudo crontab -e
@@ -104,7 +104,7 @@ Adicione a seguinte tarefa
     * 2 * * * /path/to/certbot-auto renew >> /var/log/certbot-auto.log
 
 
-Será executado todos os dias as 2 am em um minuto aleatório(recomendado pelo certbot)
+Será executado todos os dias às 2 AM em um minuto aleatório(recomendado pelo certbot)
 
 >Certbot recomenda também que essa tarefa seja executado duas vezes ao dia para garantir sua funcionalidade,
 isso vai ao seu critério.
