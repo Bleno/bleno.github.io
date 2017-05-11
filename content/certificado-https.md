@@ -107,7 +107,7 @@ Adicione a seguinte tarefa
 Será executado todos os dias às 2 AM em um minuto aleatório(recomendado pelo certbot)
 
 >Certbot recomenda também que essa tarefa seja executado duas vezes ao dia para garantir sua funcionalidade,
-isso vai ao seu critério.
+isso vai do seu critério.
 
 
 
