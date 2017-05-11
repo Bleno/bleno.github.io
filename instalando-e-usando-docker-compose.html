@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
         <meta charset="utf-8" />
-        <title>Bleno Developer - Ferramentas</title>
+        <title>Instalando e usando docker compose</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bleno Developer Atom Feed" />
 
@@ -16,14 +16,19 @@
                 <h1><a href="/">Bleno Developer </a></h1>
                 <nav><ul>
                     <li><a href="/pages/about.html">About</a></li>
-                    <li><a href="/category/infraestrutura.html">Infraestrutura</a></li>
+                    <li class="active"><a href="/category/infraestrutura.html">Infraestrutura</a></li>
                     <li><a href="/category/programacao.html">Programação</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/instalando-e-usando-docker-compose.html" rel="bookmark"
+           title="Permalink to Instalando e usando docker compose">Instalando e usando docker compose</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/instalando-e-usando-docker-compose.html">Instalando e usando docker compose</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2016-12-26T11:53:00-02:00">
                 Published: Mon 26 December 2016
@@ -38,7 +43,7 @@
         </address>
 <p>In <a href="/category/infraestrutura.html">Infraestrutura</a>.</p>
 <p>tags: <a href="/tag/docker.html">Docker</a> <a href="/tag/container.html">Container</a> <a href="/tag/compose.html">Compose</a> <a href="/tag/ferramentas.html">Ferramentas</a> </p>
-</footer><!-- /.post-info --><p>Compose é a ferramenta que permite definir e executar multiplos containers. É uma ótima forma
+</footer><!-- /.post-info -->      <p>Compose é a ferramenta que permite definir e executar multiplos containers. É uma ótima forma
 para criar ambientes através de seu arquivo de configuração no formato <code>.yml</code>.
  Usando um único comando é possível iniciar todos os serviços a partir do seu arquivo de configuração.</p>
 <h1>Verifique se já possui o docker instalado</h1>
@@ -100,43 +105,11 @@ dois serviços: Banco de dados e Wordpress.</p>
 
 <h2>Parar / apagar</h2>
 <p><strong>docker-compose down</strong> irá remover os containers e a rede padrão, mas vai preservar o banco de dados do wordpress.
- <strong>docker-composer down --volumes</strong> irá remover os containers, rede padrão e o banco de dados wordpress.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+ <strong>docker-composer down --volumes</strong> irá remover os containers, rede padrão e o banco de dados wordpress.</p>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/instalando-docker-ubuntu-14-04.html" rel="bookmark"
-                           title="Permalink to Instalando Docker Ubuntu 14.04">Instalando Docker Ubuntu 14.04</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-04-11T10:00:00-03:00">
-                Published: Sat 11 April 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-04-15T09:23:00-03:00">
-                Updated: Wed 15 April 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
-        </address>
-<p>In <a href="/category/programacao.html">Programação</a>.</p>
-<p>tags: <a href="/tag/docker.html">Docker</a> <a href="/tag/container.html">Container</a> <a href="/tag/ferramentas.html">Ferramentas</a> </p>
-</footer><!-- /.post-info -->                <p>Docker Container</p>
-                <a class="readmore" href="/instalando-docker-ubuntu-14-04.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 1
-</p>
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>

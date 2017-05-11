@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bleno Developer</title><link href="/" rel="alternate"></link><link href="/feeds/infraestrutura.atom.xml" rel="self"></link><id>/</id><updated>2016-11-09T12:00:00-02:00</updated><entry><title>Certificado SSL Para Website com NGINX</title><link href="/certificado-ssl-para-website-com-nginx.html" rel="alternate"></link><published>2016-11-09T12:00:00-02:00</published><updated>2016-11-09T12:00:00-02:00</updated><author><name>Bleno Silva</name></author><id>tag:,2016-11-09:certificado-ssl-para-website-com-nginx.html</id><summary type="html">&lt;h1&gt;Introdução&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bleno Developer</title><link href="/" rel="alternate"></link><link href="/feeds/infraestrutura.atom.xml" rel="self"></link><id>/</id><updated>2017-05-11T09:34:00-03:00</updated><entry><title>Instalando e usando docker compose</title><link href="/instalando-e-usando-docker-compose.html" rel="alternate"></link><published>2017-05-11T09:34:00-03:00</published><updated>2017-05-11T09:34:00-03:00</updated><author><name>Bleno Silva</name></author><id>tag:,2016-12-26:instalando-e-usando-docker-compose.html</id><summary type="html">&lt;p&gt;Compose é a ferramenta que permite definir e executar multiplos containers. É uma ótima forma
+para criar ambientes através de seu arquivo de configuração no formato &lt;code&gt;.yml&lt;/code&gt;.
+ Usando um único comando é possível iniciar todos os serviços a partir do seu arquivo de configuração.&lt;/p&gt;
+&lt;h1&gt;Verifique se já possui o docker instalado&lt;/h1&gt;
+&lt;p&gt;Caso não tenha do docker instalado veja &lt;a href="/instalando-docker-ubuntu-14-04.html"&gt;instalando o docker&lt;/a&gt; para mais informações&lt;/p&gt;
+&lt;h1&gt;Instalado o docker compose&lt;/h1&gt;
+&lt;p&gt;Com o docker instalado instale o python-pip&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo apt-get install -y python-pip
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Então, você pode instalar o Docker Compose:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ sudo pip install docker-compose
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Executando um container com Docker Compose&lt;/h1&gt;
+&lt;h2&gt;Exemplo wordpress&lt;/h2&gt;
+&lt;p&gt;No exemplo a seguir, será criado um arquivod docker-compose.yml no qual vai subir
+dois serviços: Banco de dados e Wordpress.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;version&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2&amp;#39;&lt;/span&gt;
+
+&lt;span class="l l-Scalar l-Scalar-Plain"&gt;services&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+   &lt;span class="l l-Scalar l-Scalar-Plain"&gt;db&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;image&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;mysql:5.7&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;volumes&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+       &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;db_data:/var/lib/mysql&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;restart&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;always&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;environment&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+       &lt;span class="l l-Scalar l-Scalar-Plain"&gt;MYSQL_ROOT_PASSWORD&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;somewordpress&lt;/span&gt;
+       &lt;span class="l l-Scalar l-Scalar-Plain"&gt;MYSQL_DATABASE&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;wordpress&lt;/span&gt;
+       &lt;span class="l l-Scalar l-Scalar-Plain"&gt;MYSQL_USER&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;wordpress&lt;/span&gt;
+       &lt;span class="l l-Scalar l-Scalar-Plain"&gt;MYSQL_PASSWORD&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;wordpress&lt;/span&gt;
+
+   &lt;span class="l l-Scalar l-Scalar-Plain"&gt;wordpress&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;depends_on&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+       &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;db&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;image&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;wordpress:latest&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;ports&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+       &lt;span class="p p-Indicator"&gt;-&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;8000:80&amp;quot;&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;restart&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;always&lt;/span&gt;
+     &lt;span class="l l-Scalar l-Scalar-Plain"&gt;environment&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+       &lt;span class="l l-Scalar l-Scalar-Plain"&gt;WORDPRESS_DB_HOST&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;db:3306&lt;/span&gt;
+       &lt;span class="l l-Scalar l-Scalar-Plain"&gt;WORDPRESS_DB_USER&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;wordpress&lt;/span&gt;
+       &lt;span class="l l-Scalar l-Scalar-Plain"&gt;WORDPRESS_DB_PASSWORD&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l l-Scalar l-Scalar-Plain"&gt;wordpress&lt;/span&gt;
+&lt;span class="l l-Scalar l-Scalar-Plain"&gt;volumes&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+    &lt;span class="l l-Scalar l-Scalar-Plain"&gt;db_data&lt;/span&gt;&lt;span class="p p-Indicator"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Então temos dois serviços configurados &lt;em&gt;db&lt;/em&gt; e &lt;em&gt;wordpress&lt;/em&gt;, o serviço db utiliza a imagem mysql:5.7
+ onde utiliza o volume db_data e restart always.
+  Já o serviço wordpress tem um &lt;em&gt;depends_on&lt;/em&gt; no qual segnifica que esse serviço depende do serviço db.
+  Para mais informações ssbre o &lt;a href="https://docs.docker.com/compose/compose-file/"&gt;Compose file&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Nesse exemplo a cima foi criado uma pasta chamada my_wordpress e o arquivo docker-compose.yml foi salvo dentro dela.&lt;/p&gt;
+&lt;p&gt;Agora pra executar basta entrar na poasta my_wordpress fazer o seguinte comando:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ docker-compose up -d
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Parar / apagar&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;docker-compose down&lt;/strong&gt; irá remover os containers e a rede padrão, mas vai preservar o banco de dados do wordpress.
+ &lt;strong&gt;docker-composer down --volumes&lt;/strong&gt; irá remover os containers, rede padrão e o banco de dados wordpress.&lt;/p&gt;</summary><category term="Docker"></category><category term="Container"></category><category term="Compose"></category><category term="Ferramentas"></category></entry><entry><title>Certificado SSL Para Website com NGINX</title><link href="/certificado-ssl-para-website-com-nginx.html" rel="alternate"></link><published>2016-11-09T12:00:00-02:00</published><updated>2016-11-09T12:00:00-02:00</updated><author><name>Bleno Silva</name></author><id>tag:,2016-11-09:certificado-ssl-para-website-com-nginx.html</id><summary type="html">&lt;h1&gt;Introdução&lt;/h1&gt;
 &lt;p&gt;&lt;a href="https://certbot.eff.org/"&gt;Certbot&lt;/a&gt; é um automatizador para instalação de certificados SSL da &lt;a href="https://letsencrypt.org/"&gt;Let's Encrypt&lt;/a&gt;. 
 Como os certificados da Let's Encrypt são válidos por apenas 3 meses a ideia do certbot é&lt;br /&gt;
 automatizar a renovação desse certificado além de criar o certificado.&lt;/p&gt;
@@ -85,7 +147,7 @@ e o parâmetro --no-self-upgrade&lt;/p&gt;
 &lt;p&gt;Será executado todos os dias às 2 AM em um minuto aleatório(recomendado pelo certbot)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Certbot recomenda também que essa tarefa seja executado duas vezes ao dia para garantir sua funcionalidade,
-isso vai ao seu critério.&lt;/p&gt;
+isso vai do seu critério.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1&gt;Referências&lt;/h1&gt;
 &lt;ul&gt;

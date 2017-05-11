@@ -23,7 +23,97 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/certificado-ssl-para-website-com-nginx.html">Certificado SSL Para Website com NGINX</a></h1>
+                    <h1 class="entry-title"><a href="/instalando-e-usando-docker-compose.html">Instalando e usando docker compose</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2016-12-26T11:53:00-02:00">
+                Published: Mon 26 December 2016
+        </abbr>
+		<br />
+        <abbr class="modified" title="2017-05-11T09:34:00-03:00">
+                Updated: Thu 11 May 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
+        </address>
+<p>In <a href="/category/infraestrutura.html">Infraestrutura</a>.</p>
+<p>tags: <a href="/tag/docker.html">Docker</a> <a href="/tag/container.html">Container</a> <a href="/tag/compose.html">Compose</a> <a href="/tag/ferramentas.html">Ferramentas</a> </p>
+</footer><!-- /.post-info --><p>Compose é a ferramenta que permite definir e executar multiplos containers. É uma ótima forma
+para criar ambientes através de seu arquivo de configuração no formato <code>.yml</code>.
+ Usando um único comando é possível iniciar todos os serviços a partir do seu arquivo de configuração.</p>
+<h1>Verifique se já possui o docker instalado</h1>
+<p>Caso não tenha do docker instalado veja <a href="/instalando-docker-ubuntu-14-04.html">instalando o docker</a> para mais informações</p>
+<h1>Instalado o docker compose</h1>
+<p>Com o docker instalado instale o python-pip</p>
+<div class="highlight"><pre><span></span>$ sudo apt-get install -y python-pip
+</pre></div>
+
+
+<p>Então, você pode instalar o Docker Compose:</p>
+<div class="highlight"><pre><span></span>$ sudo pip install docker-compose
+</pre></div>
+
+
+<h1>Executando um container com Docker Compose</h1>
+<h2>Exemplo wordpress</h2>
+<p>No exemplo a seguir, será criado um arquivod docker-compose.yml no qual vai subir
+dois serviços: Banco de dados e Wordpress.</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;2&#39;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">db</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql:5.7</span>
+     <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db_data:/var/lib/mysql</span>
+     <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+     <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">MYSQL_ROOT_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">somewordpress</span>
+       <span class="l l-Scalar l-Scalar-Plain">MYSQL_DATABASE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+       <span class="l l-Scalar l-Scalar-Plain">MYSQL_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+       <span class="l l-Scalar l-Scalar-Plain">MYSQL_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+
+   <span class="l l-Scalar l-Scalar-Plain">wordpress</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
+     <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress:latest</span>
+     <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+       <span class="p p-Indicator">-</span> <span class="s">&quot;8000:80&quot;</span>
+     <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+     <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+       <span class="l l-Scalar l-Scalar-Plain">WORDPRESS_DB_HOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">db:3306</span>
+       <span class="l l-Scalar l-Scalar-Plain">WORDPRESS_DB_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+       <span class="l l-Scalar l-Scalar-Plain">WORDPRESS_DB_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wordpress</span>
+<span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">db_data</span><span class="p p-Indicator">:</span>
+</pre></div>
+
+
+<p>Então temos dois serviços configurados <em>db</em> e <em>wordpress</em>, o serviço db utiliza a imagem mysql:5.7
+ onde utiliza o volume db_data e restart always.
+  Já o serviço wordpress tem um <em>depends_on</em> no qual segnifica que esse serviço depende do serviço db.
+  Para mais informações ssbre o <a href="https://docs.docker.com/compose/compose-file/">Compose file</a></p>
+<p>Nesse exemplo a cima foi criado uma pasta chamada my_wordpress e o arquivo docker-compose.yml foi salvo dentro dela.</p>
+<p>Agora pra executar basta entrar na poasta my_wordpress fazer o seguinte comando:</p>
+<div class="highlight"><pre><span></span>$ docker-compose up -d
+</pre></div>
+
+
+<h2>Parar / apagar</h2>
+<p><strong>docker-compose down</strong> irá remover os containers e a rede padrão, mas vai preservar o banco de dados do wordpress.
+ <strong>docker-composer down --volumes</strong> irá remover os containers, rede padrão e o banco de dados wordpress.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/certificado-ssl-para-website-com-nginx.html" rel="bookmark"
+                           title="Permalink to Certificado SSL Para Website com NGINX">Certificado SSL Para Website com NGINX</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2016-11-09T12:00:00-02:00">
                 Published: Wed 09 November 2016
@@ -38,104 +128,15 @@
         </address>
 <p>In <a href="/category/infraestrutura.html">Infraestrutura</a>.</p>
 <p>tags: <a href="/tag/web.html">Web</a> <a href="/tag/webserver.html">Webserver</a> <a href="/tag/ssl.html">SSL</a> <a href="/tag/certificado.html">Certificado</a> <a href="/tag/nginx.html">NGINX</a> <a href="/tag/ubuntu.html">Ubuntu</a> <a href="/tag/centos.html">Centos</a> </p>
-</footer><!-- /.post-info --><h1>Introdução</h1>
-<p><a href="https://certbot.eff.org/">Certbot</a> é um automatizador para instalação de certificados SSL da <a href="https://letsencrypt.org/">Let's Encrypt</a>. 
-Como os certificados da Let's Encrypt são válidos por apenas 3 meses a ideia do certbot é<br />
-automatizar a renovação desse certificado além de criar o certificado.</p>
-<h2>Instalar</h2>
-<p>Fazer o download e instalação do certbot-auto script</p>
-<h3>Ubuntu</h3>
-<p>Download</p>
-<div class="highlight"><pre><span></span>wget https://dl.eff.org/certbot-auto
-</pre></div>
-
-
-<p>Permissão de execução</p>
-<div class="highlight"><pre><span></span>chmod a+x certbot-auto
-</pre></div>
-
-
-<p>certbot-auto instala suas próprias dependêncies inclusive atualiza seu próprio código cliente</p>
-<div class="highlight"><pre><span></span>$ ./certbot-auto
-</pre></div>
-
-
-<h3>Centos 7</h3>
-<p>Verifique se você tem os repositório EPEL repository habilitado, caso não, habilite com o seguinte processo <a href="https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F">enable the EPEL repository.</a>
-obs: Caso seja Centos 6 pode ser realizado o mesmo processo do ubuntu.</p>
-<div class="highlight"><pre><span></span> $ sudo yum install certbot
-</pre></div>
-
-
-<h2>Gerar o certicado</h2>
-<p>No caso vou gerar o certicado para os seguintes domínios: www.exemple.com exemple.com e api.exemple.com 
-usando a opção standalone do certbot-auto, no qual é aconselhável parar o serviço do webserver nginx.</p>
-<h3>ubuntu</h3>
-<div class="highlight"><pre><span></span>$ ./path/to/certbot-auto certonly --standalone -d example.com -d www.example.com -d api.example.com
-</pre></div>
-
-
-<h3>centos 7</h3>
-<div class="highlight"><pre><span></span>$ certbot certonly --standalone -d example.com -d www.example.com -d api.example.com
-</pre></div>
-
-
-<p>Os certificados são gerados no caminho parecido com o seguinte</p>
-<div class="highlight"><pre><span></span>/etc/letsencrypt/live/example.com/fullchain.pem
-</pre></div>
-
-
-<h2>Automatizando e renovando</h2>
-<p>Como disse no inicio, o certificado da Let's Encrypt é válido por 90 dias, então para que seus usuários não sejam pegos de surpresa é altamente recomendável 
-que seja feita a renovação o quanto antes.</p>
-<p>Primeiro verifique se o comando de renovação pode ser executado com sucesso, (talvez seja necessário parar o servidor web no caso Nginx)</p>
-<h3>Ubuntu</h3>
-<div class="highlight"><pre><span></span>./path/to/certbot-auto renew --dry-run
-</pre></div>
-
-
-<h3>Centos 7</h3>
-<div class="highlight"><pre><span></span>$ certbot renew --dry-run
-</pre></div>
-
-
-<p>Para renovar o certificado poder ser executado o seguinte comando, o parâmetro --quiet não gera log 
-e o parâmetro --no-self-upgrade</p>
-<h3>Ubunutu</h3>
-<div class="highlight"><pre><span></span>./path/to/certbot-auto renew --quiet --no-self-upgrade
-</pre></div>
-
-
-<h3>Centos 7</h3>
-<div class="highlight"><pre><span></span>$ certbot renew --quiet --no-self-upgrade
-</pre></div>
-
-
-<p>Pode ser feito um cron para executar esse processo, de renovação.</p>
-<div class="highlight"><pre><span></span>$ sudo crontab -e
-</pre></div>
-
-
-<p>Adicione a seguinte tarefa</p>
-<div class="highlight"><pre><span></span>* 2 * * * /path/to/certbot-auto renew &gt;&gt; /var/log/certbot-auto.log
-</pre></div>
-
-
-<p>Será executado todos os dias às 2 AM em um minuto aleatório(recomendado pelo certbot)</p>
-<blockquote>
-<p>Certbot recomenda também que essa tarefa seja executado duas vezes ao dia para garantir sua funcionalidade,
-isso vai ao seu critério.</p>
-</blockquote>
-<h1>Referências</h1>
-<ul>
-<li><a href="https://letsencrypt.org/">https://letsencrypt.org/</a></li>
-<li><a href="https://certbot.eff.org/">https://certbot.eff.org/</a></li>
-<li><a href="http://www.infowester.com/linuxcron.php">http://www.infowester.com/linuxcron.php</a></li>
-</ul>                </article>
+</footer><!-- /.post-info -->                <p>Docker Container</p>
+                <a class="readmore" href="/certificado-ssl-para-website-com-nginx.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
 <p class="paginator">
     Page 1 / 1
 </p>
-            </aside><!-- /#featured -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>
