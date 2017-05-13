@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+        <meta charset="utf-8" />
+        <title>Gerenciando virtualenv com pyenv-virtualenv</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bleno Developer Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Bleno Developer </a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/category/infraestrutura.html">Infraestrutura</a></li>
+                    <li class="active"><a href="/category/programacao.html">Programação</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/drafts/gerenciando-virtualenv-com-pyenv-virtualenv.html" rel="bookmark"
+           title="Permalink to Gerenciando virtualenv com pyenv-virtualenv">Gerenciando virtualenv com pyenv-virtualenv</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-04-15T12:00:00-03:00">
+                Published: Wed 15 April 2015
+        </abbr>
+		<br />
+        <abbr class="modified" title="2015-04-15T12:00:00-03:00">
+                Updated: Wed 15 April 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/bleno-silva.html">Bleno Silva</a>
+        </address>
+<p>In <a href="/category/programacao.html">Programação</a>.</p>
+<p>tags: <a href="/tag/python.html">Python</a> <a href="/tag/pyenv.html">pyenv</a> <a href="/tag/virtualenv.html">virtualenv</a> <a href="/tag/pyenv-virtualenv.html">pyenv-virtualenv</a> </p>
+</footer><!-- /.post-info -->      <h1>Overview</h1>
+<p>Nexus Repository Manager é uma aplicação em Java que requer o Java Runtime Environment.
+O Nexus Repository Manager é uma aplicação servidor com interface web onde é possível criar e gerenciar repositórios.
+Nexus Repository Manager pode oferecer repositórios para Docker NuGetnpm Bower Pypi e RubyGems.</p>
+<h1>Requisitos</h1>
+<h2>Instalar o Java da Oracle</h2>
+<p>Infelizmente, de acordo com a documentação o Nexus não suporta o OpenJDK ou outras versões Java, então:</p>
+<div class="highlight"><pre><span></span>sudo add-apt-repository ppa:webupd8team/java
+
+sudo apt-get update
+
+sudo apt-get install oracle-java8-installer
+</pre></div>
+
+
+<h1>Instalação</h1>
+<h2>Instalando como um plugin do virtualenv</h2>
+<p>Faça o download do pacote:</p>
+<div class="highlight"><pre><span></span>curl -O https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.3.1-01-unix.tar.gz
+</pre></div>
+
+
+<p>Descompactar:</p>
+<div class="highlight"><pre><span></span>tar -zxvf nexus-3.3.1-01-unix.tar.gz
+</pre></div>
+
+
+<h2>Todo</h2>
+<ul>
+<li>Instalar</li>
+<li>Configurar serviço</li>
+<li>Colocar em um proxy reverso</li>
+<li>Criar um Repositório docker</li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="https://travis-ci.org/">Travis-CI</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://github.com/Bleno">Github</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-71083804-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>
