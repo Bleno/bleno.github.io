@@ -40,6 +40,15 @@ Descompactar:
 
     tar -zxvf nexus-3.3.1-01-unix.tar.gz
 
+    mv nexus-3.3.1-01 /opt/nexus
+
+
+Adicionar usuário para executar o processo
+
+	sudo su
+
+    adduser nexus
+
 
 ## Todo
 
@@ -47,3 +56,4 @@ Descompactar:
 * Configurar serviço
 * Colocar em um proxy reverso
 * Criar um Repositório docker
+* https://books.sonatype.com/nexus-book/reference3/install.html#configure-service
