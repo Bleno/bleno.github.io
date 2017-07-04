@@ -42,12 +42,10 @@ Descompactar:
 
     mv nexus-3.3.1-01 /opt/nexus
 
+Antes de configurar o serviço, vamos criar um usuário com permissão de executar o nexus.
 
-Adicionar usuário para executar o processo
 
-	sudo su
-
-    adduser nexus
+    sudo useradd -r nexus
 
 
 ## Todo
