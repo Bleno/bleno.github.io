@@ -67,6 +67,13 @@ sudo apt-get install oracle-java8-installer
 
 <p>Descompactar:</p>
 <div class="highlight"><pre><span></span>tar -zxvf nexus-3.3.1-01-unix.tar.gz
+
+mv nexus-3.3.1-01 /opt/nexus
+</pre></div>
+
+
+<p>Antes de configurar o serviço, vamos criar um usuário com permissão de executar o nexus.</p>
+<div class="highlight"><pre><span></span>sudo useradd -r nexus
 </pre></div>
 
 
@@ -76,6 +83,7 @@ sudo apt-get install oracle-java8-installer
 <li>Configurar serviço</li>
 <li>Colocar em um proxy reverso</li>
 <li>Criar um Repositório docker</li>
+<li>https://books.sonatype.com/nexus-book/reference3/install.html#configure-service</li>
 </ul>
     </div><!-- /.entry-content -->
 
